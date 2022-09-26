@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bubbly-sentinel-331600",
+  "private_key_id": "1e618075c818d010f0430010d77a084382a1c7b5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDHAVENcEVb5fiu\nTfnEEL0+mQoHclNGQw8KtvXCfisaWdDvisB1vbvWylMw6s7zvbWl+6KbQ26SGC7e\nSeJFJJKSIU7mS04fUJdkuFMh+Za+ywXNc9ZWSkfbaq1RtplSLL/A/B0XnG3xlD3C\n5Td7U6F3/XZ5gykcowdbGo6BUl3A1zpfinOedrjq42LIAT2vxNi/rRWhR+lYaGky\ny5rMiNL4hUpXyjawAV6DfEKiT6CBgc1E1cNoOcEjAfh+TWEohTqD2fCbmE8SCIOX\n6W472vYjeMnDvQetKyPeYmxxISUioBMqn+hNSMyYTVUuUUkXWmDAbDNMei6ek3RM\n57vbLDurAgMBAAECggEAV57hSJj3uPRDL7/eanDyWhb4/vlb6BJLk6yl/ZoesU39\nfBLsFYtSIsrXoTCpqVEMo0XtvQ4OJ54lOLNwQIBPVq76tdRPU+NgnTS5SbrCoEP0\nzJaltz2icN4B7PoIfNF+JmL7DjPOhrD+FotlB9R1QkcjvHG/DsBLU1YYi6Ev7WEv\ngeK2IRMNEZxLZQq8EY7eGm0YW/7bRE/uMdP7WPTZGrKYYoCc3B1nHIdFTVjOVNtY\nGWtqrsyGKXmCnyckRaY5hFS+mqhaG3ggUfsV0sv7kQsKEI4pg/aRvWT08RtL2ubw\nGztPsF1lKdE7DxqCis91ROfrhdvo7yudmm2KOhfERQKBgQDrGnhgDre370+3i8DS\nUCJrJJWBiJnWVtWfulPf7/0Ikf28MMTd4dC8D7VeQeHt3b29kK36W5oLIHlsg5L7\n8lLvwUQ0PFxD5Wm+hjLItrPPX6E/AUanOz6g9VD011BdMqa24Y4GHkGTXwJpXHz4\n4Pb1XGTuqJB6Iz4TCD29WD8GJQKBgQDYsXf6SaTgCS/3t1HrBdNuGHmyr3+fp1LF\nw6nXN1+s03N/9y8oDGjzYaBT8oGL/0bfMwWbGbL1a8lrwW+o+MybREU718D4x7yq\nSMgRbKINtxwo8oBLdk0lQ7kPrRU9k1q5UWa1GsTLtWEBEIsep/3dBrsfRjWqyMC1\nXjRkjJaJjwKBgQCYGXztMDhdcB6TsX9i0OMji/yJW/WivHTiLGqdAychh0mvmaGT\npscjE8qTm23uNLnPTS2xPdfwAOdtc8YA56oOYGuem7pZVq9NyoZKYiD8NXMdTtcF\n1AdVnL/uVuowEVfYEx6OCL8F976YqXRUkz5SSJ8n47fsvKYpK/i9ab0EXQKBgQCL\nxp4fopVptkNsxKFgupdRcxQ9QJtQPrxTuQy7OIrMjnD4YFfYu3iPVa/3tnv99CKh\nIuZAz+jyCh8ZFOOT2TkSBo2qNlfRofV+2gfDxZEay7ysZRCAnMTSfsbG59zFpWFm\nHK3lsGi1BkCWUTeMBMzqX8cgO0eu7GPyGdwt58nK3QKBgAquoCss9P3rxwh5eni8\nJH+bt6pDvYsYQYqkfGhXMCXrXURatTbFCn299uKcsVdzJ2A5GSbDj/mX1aECoFyF\nu5zi3DQrRVgVjZAdi9t/YjQn99WEGaaFOwLyqEzj077/7t52FwTJgBrJ9y+wuWp9\nAAyNhTthEw8kdikTs6IUufDU\n-----END PRIVATE KEY-----\n",
+  "client_email": "mentalhealthapp@bubbly-sentinel-331600.iam.gserviceaccount.com",
+  "client_id": "100421856569859123290",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mentalhealthapp%40bubbly-sentinel-331600.iam.gserviceaccount.com"
+}
