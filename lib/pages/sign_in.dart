@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   late bool isPasswordVisible = false;
   bool isLoading = false;
 
-  Future<void> signIn() async {
+  Future<int> signIn() async {
     var auth = await dataBaseHelper.authenticate(
       controllerUsername.text.trim(),
       controllerPassword.text.trim(),
@@ -36,23 +36,9 @@ class _LoginPageState extends State<LoginPage> {
     await UserSecureStorage.setUsername(controllerUsername.text);
     await UserSecureStorage.setPassword(controllerPassword.text);
     await UserSecureStorage.setToken(auth.toString());
-
-    int id = await dataBaseHelper.authenticateToGetId(
-        controllerUsername.text.trim(), controllerPassword.text.trim());
+    int id = await dataBaseHelper.authenticateToGetId(controllerUsername.text.trim(), controllerPassword.text.trim());
     await UserSecureStorage.setUserId(id.toString());
-    String idSend = id.toString();
-    if (id == null) {
-      Fluttertoast.showToast(
-        msg: "Usuario o contraseña incorrectos",
-        toastLength: Toast.LENGTH_LONG,
-      );
-      print("No existe en la base de datos");
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage(idSend)),
-      ).then((value) => setState(() {}));
-    }
+    return id;
   }
 
 
@@ -120,19 +106,16 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(height: 20,),
-                      Container(
-                        child: MyInputField(
-                          labelText: "Usuario",
-                          controller: controllerUsername,
-                        ),
+                      MyInputField(
+                        labelText: "Usuario",
+                        controller: controllerUsername,
                       ),
                       SizedBox(height: 20,),
-                      Container(
-                        child: MyInputField(
-                          labelText: "Contraseña",
-                          isPasswordField: true,
-                          controller: controllerPassword,
-                        ),
+                      MyInputField(
+                        labelText: "Contraseña",
+                        isPasswordField: true,
+                        controller: controllerPassword,
+                        obscureText: true,
                       ),
 
                       Container(
@@ -173,7 +156,18 @@ class _LoginPageState extends State<LoginPage> {
                           setState(() {
                             isLoading = true;
                           });
-                          await signIn();
+                          int userId = await signIn();
+                          if (userId == null) {
+                            Fluttertoast.showToast(
+                              msg: "Usuario o contraseña incorrectos",
+                              toastLength: Toast.LENGTH_LONG,
+                            );
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => HomePage(userId.toString())),
+                            );
+                          }
                           setState(() {
                             isLoading = false;
                           });

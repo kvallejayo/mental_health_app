@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:isoweek/isoweek.dart';
 import 'package:mental_health_app/components/bottom_navigation_bar.dart';
+import 'package:mental_health_app/components/my_input_field.dart';
 import 'package:mental_health_app/models/Affimation.dart';
 import 'package:mental_health_app/pages/positive_reinforcement_component/modify_affirmation.dart';
 import 'package:mental_health_app/security/user_secure_storage.dart';
@@ -362,25 +363,11 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
         padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
-            TextField(
+            MyInputField(
               controller: message,
-              decoration: InputDecoration(
-                fillColor: Colors.white,
-                filled: true,
-                focusColor: const Color.fromRGBO(146, 150, 187, 10),
-                hintText: "Escribe tu afirmación ...",
-                hintStyle: const TextStyle(
-                    color: Color.fromRGBO(146, 150, 187, 10)),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                      width: 3, color: Color.fromRGBO(232, 227, 238, 10)),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 3, color: Colors.red),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+              labelText: "Escribe tu afirmación",
+              hintInsteadOfLabel: true,
+              backgroundColor: Colors.white,
             ),
 
             SizedBox(height: 10,),

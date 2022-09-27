@@ -53,11 +53,9 @@ class _SplashScreenState extends State<SplashScreen> {
                       child: Image.asset('assets/bot_emocionado.png'),
                     ),
                     SizedBox(height: 20,),
-                    Container(
-                      child: SpinKitCircle(
-                        size: 100,
-                        color: (Color.fromRGBO(147, 150, 186, 20)),
-                      ),
+                    SpinKitCircle(
+                      size: 100,
+                      color: (Color.fromRGBO(147, 150, 186, 20)),
                     ),
                   ],
                 ),

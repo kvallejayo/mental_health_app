@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import '../Components/bottom_navigation_bar.dart';
@@ -41,30 +42,32 @@ class _HomePageState extends State<HomePage> {
   int indexSelectedAffirmation = 0;
   List<dynamic> affirmationsList = [];
 
-  Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text("¿Deseas salir de la aplicación?"),
-      actions: [
-        ElevatedButton(
-          child: Text("No"),
-          style: ElevatedButton.styleFrom(
-            primary: waterGreen,
+  Future<bool?> showWarning(BuildContext context){
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("¿Deseas salir de la aplicación?"),
+        actions: [
+          ElevatedButton(
+            child: Text("No"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: waterGreen,
+            ),
+            onPressed: () => Navigator.pop(context, false),
           ),
-          onPressed: () => Navigator.pop(context, false),
-        ),
-        ElevatedButton(
-          child: Text("Si"),
-          style: ElevatedButton.styleFrom(
-            primary: waterGreen,
+          ElevatedButton(
+            child: Text("Si"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: waterGreen,
+            ),
+            onPressed: () {
+              SystemNavigator.pop();
+            },
           ),
-          onPressed: () {
-            SystemNavigator.pop();
-          },
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 
   Future initAsync() async {
     //await AndroidAlarmManager.initialize();
@@ -117,11 +120,11 @@ class _HomePageState extends State<HomePage> {
       },
       child: Scaffold(
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Stack(
-              children: [
-                BackgroundImage("assets/fondos/home.png"),
-                Container(
+          child: Stack(
+            children: [
+              BackgroundImage("assets/fondos/home.png"),
+              SingleChildScrollView(
+                child: Container(
                   padding: EdgeInsets.all(20.0),
                   child: Column(
                     children: [
@@ -132,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                             future: UserSecureStorage.getUsername(),
                             builder: (context, AsyncSnapshot snapshot){
                               if(!snapshot.hasData){
-                                return CircularProgressIndicator();
+                                return SpinKitThreeInOut(color: darkPurple,);
                               }
                               widget.username = snapshot.data;
                               return Text(
@@ -233,11 +236,14 @@ class _HomePageState extends State<HomePage> {
 
                       SizedBox(height: 15,),
 
+
                       Container(
                         child: Affirmation(context),
                       ),
 
                       SizedBox(height: 10,),
+
+
 
                       Container(
                         child: ObjectivesRemindersAndDaily(context),
@@ -245,11 +251,12 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         child: SleepRespirationAndActivities(context),
                       ),
+
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         bottomNavigationBar: BottomNavigation(
@@ -315,7 +322,9 @@ class _HomePageState extends State<HomePage> {
                   future: fetchAffirmationData(),
                   builder: (context, AsyncSnapshot<List<dynamic>> snapshot){
                     if (!snapshot.hasData){
-                      return Center(child: CircularProgressIndicator());
+                      return Center(
+                        child: SpinKitThreeInOut(color: darkPurple,),
+                      );
                     }
                     List? affirmationsList = snapshot.data;
                     return Container(
@@ -691,7 +700,7 @@ class _HomePageState extends State<HomePage> {
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w500,
                           fontSize: 8),
-                    )
+                    ),
                   ],
                 )
               ],

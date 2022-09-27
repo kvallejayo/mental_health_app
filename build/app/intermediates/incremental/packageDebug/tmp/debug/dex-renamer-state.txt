@@ -1,7 +1,7 @@
-#Sun Sep 25 00:30:50 COT 2022
-base.1=D\:\\Projects\\Android Studio\\mental_health_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes2.dex
+#Mon Sep 26 12:25:11 COT 2022
+base.1=D\:\\Projects\\GitHubRepositories\\mental_health_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes2.dex
 path.1=classes2.dex
-base.0=D\:\\Projects\\Android Studio\\mental_health_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+base.0=D\:\\Projects\\GitHubRepositories\\mental_health_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
 path.0=classes.dex

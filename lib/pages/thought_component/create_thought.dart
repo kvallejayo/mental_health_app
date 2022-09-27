@@ -103,7 +103,7 @@ class _CreateThoughtState extends State<CreateThought> {
                         SizedBox(height: 20,),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: waterGreen,
+                            backgroundColor: waterGreen,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                             ),

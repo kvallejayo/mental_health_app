@@ -618,7 +618,6 @@ class DataBaseHelper {
       },
       body: json.encode(thoughtJson),
     );
-    print(json.decode(result.body));
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(result.body);
       return Thought.fromJson(jsonResponse);
@@ -643,6 +642,7 @@ class DataBaseHelper {
         'Authorization': 'Bearer $token',
       }
     );
+    print(json.decode(result.body));
     if (result.statusCode == HttpStatus.ok) {
       var list = json.decode(result.body)["content"] as List;
       return list.map((jsonObj) => Thought.fromJson(jsonObj)).toList();

@@ -88,12 +88,12 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Stack(
-            children: [
-              BackgroundImage('assets/fondos/profile.png'),
-              Column(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            BackgroundImage('assets/fondos/profile.png'),
+            SingleChildScrollView(
+              child: Column(
                 children: [
                   SizedBox(height: 10,),
                   Container(
@@ -213,6 +213,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               controller: ctrlPassword,
                               enabled: editProfile,
                               isPasswordField: true,
+                              obscureText: true,
                             ),
                             H1Label("Universidad:"),
                             MyInputField(
@@ -312,9 +313,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                   ),
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigation(

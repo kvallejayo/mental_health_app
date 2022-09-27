@@ -13,29 +13,29 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->D:\Projects\Android Studio\mental_health_app\android\app\src\main\AndroidManifest.xml:3:5-66
-15-->D:\Projects\Android Studio\mental_health_app\android\app\src\main\AndroidManifest.xml:3:22-64
+15-->D:\Projects\GitHubRepositories\mental_health_app\android\app\src\main\AndroidManifest.xml:3:5-66
+15-->D:\Projects\GitHubRepositories\mental_health_app\android\app\src\main\AndroidManifest.xml:3:22-64
 16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-16-->D:\Projects\Android Studio\mental_health_app\android\app\src\main\AndroidManifest.xml:4:5-80
-16-->D:\Projects\Android Studio\mental_health_app\android\app\src\main\AndroidManifest.xml:4:22-78
+16-->D:\Projects\GitHubRepositories\mental_health_app\android\app\src\main\AndroidManifest.xml:4:5-80
+16-->D:\Projects\GitHubRepositories\mental_health_app\android\app\src\main\AndroidManifest.xml:4:22-78
 17    <uses-permission android:name="android.permission.WAKE_LOCK" />
-17-->D:\Projects\Android Studio\mental_health_app\android\app\src\main\AndroidManifest.xml:5:5-67
-17-->D:\Projects\Android Studio\mental_health_app\android\app\src\main\AndroidManifest.xml:5:22-65
+17-->D:\Projects\GitHubRepositories\mental_health_app\android\app\src\main\AndroidManifest.xml:5:5-67
+17-->D:\Projects\GitHubRepositories\mental_health_app\android\app\src\main\AndroidManifest.xml:5:22-65
 18    <uses-permission android:name="android.permission.CALL_PHONE" />
-18-->[:flutter_phone_direct_caller] D:\Projects\Android Studio\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-69
-18-->[:flutter_phone_direct_caller] D:\Projects\Android Studio\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-66
+18-->[:flutter_phone_direct_caller] D:\Projects\GitHubRepositories\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-69
+18-->[:flutter_phone_direct_caller] D:\Projects\GitHubRepositories\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-66
 19
 20    <uses-feature
-20-->[:flutter_phone_direct_caller] D:\Projects\Android Studio\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-13:36
+20-->[:flutter_phone_direct_caller] D:\Projects\GitHubRepositories\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-13:36
 21        android:name="android.hardware.telephony"
-21-->[:flutter_phone_direct_caller] D:\Projects\Android Studio\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-50
+21-->[:flutter_phone_direct_caller] D:\Projects\GitHubRepositories\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-50
 22        android:required="false" />
-22-->[:flutter_phone_direct_caller] D:\Projects\Android Studio\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-33
+22-->[:flutter_phone_direct_caller] D:\Projects\GitHubRepositories\mental_health_app\build\flutter_phone_direct_caller\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-33
 23
 24    <application
 25        android:name="android.app.Application"
 26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-26-->[androidx.core:core:1.6.0] C:\Users\aldai\.gradle\caches\transforms-3\acbce933e4b464a5224ed377a62db1f5\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+26-->[androidx.core:core:1.6.0] C:\Users\Aldair\.gradle\caches\transforms-3\acbce933e4b464a5224ed377a62db1f5\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 27        android:debuggable="true"
 28        android:icon="@mipmap/ic_launcher"
 29        android:label="Mindy" >
@@ -73,26 +73,26 @@
 61            android:value="2" />
 62
 63        <activity
-63-->[:url_launcher_android] D:\Projects\Android Studio\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
+63-->[:url_launcher_android] D:\Projects\GitHubRepositories\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
 64            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-64-->[:url_launcher_android] D:\Projects\Android Studio\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
+64-->[:url_launcher_android] D:\Projects\GitHubRepositories\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
 65            android:exported="false"
-65-->[:url_launcher_android] D:\Projects\Android Studio\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
+65-->[:url_launcher_android] D:\Projects\GitHubRepositories\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
 66            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-66-->[:url_launcher_android] D:\Projects\Android Studio\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
+66-->[:url_launcher_android] D:\Projects\GitHubRepositories\mental_health_app\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
 67
 68        <uses-library
-68-->[androidx.window:window:1.0.0-beta04] C:\Users\aldai\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+68-->[androidx.window:window:1.0.0-beta04] C:\Users\Aldair\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 69            android:name="androidx.window.extensions"
-69-->[androidx.window:window:1.0.0-beta04] C:\Users\aldai\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+69-->[androidx.window:window:1.0.0-beta04] C:\Users\Aldair\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
 70            android:required="false" />
-70-->[androidx.window:window:1.0.0-beta04] C:\Users\aldai\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+70-->[androidx.window:window:1.0.0-beta04] C:\Users\Aldair\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
 71        <uses-library
-71-->[androidx.window:window:1.0.0-beta04] C:\Users\aldai\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+71-->[androidx.window:window:1.0.0-beta04] C:\Users\Aldair\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
 72            android:name="androidx.window.sidecar"
-72-->[androidx.window:window:1.0.0-beta04] C:\Users\aldai\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+72-->[androidx.window:window:1.0.0-beta04] C:\Users\Aldair\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 73            android:required="false" />
-73-->[androidx.window:window:1.0.0-beta04] C:\Users\aldai\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+73-->[androidx.window:window:1.0.0-beta04] C:\Users\Aldair\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
 74    </application>
 75
 76</manifest>

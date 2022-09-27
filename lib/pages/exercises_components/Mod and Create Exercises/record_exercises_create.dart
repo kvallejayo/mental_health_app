@@ -83,7 +83,7 @@ class _RecordExercisesCreateState extends State<RecordExercisesCreate> {
                               SizedBox(height: 10,),
                               MyInputField(
                                 controller: message,
-                                labelText: "Escribir recordatorio",
+                                labelText: "Describe tu ejercicio",
                                 backgroundColor: Colors.white,
                                 hintInsteadOfLabel: true,
                               ),

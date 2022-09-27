@@ -76,36 +76,41 @@ class _ThoughtsState extends State<Thoughts> {
                         FutureBuilder(
                           future: fetchThoughtsData(),
                           builder: (context, AsyncSnapshot<dynamic> snapshot){
-                            if(snapshot.hasData){
-                              thoughtsList = snapshot.data;
-                              return Column(
-                                children: [
-                                  ThoughtsListView(
-                                    thoughtsList: thoughtsList,
-                                    popUpMenuOptions: [
-                                      {
-                                        "title": "Visualizar",
-                                        "color": Colors.orange,
-                                        "icon": Icons.info,
-                                      },
-                                      {
-                                        "title": "Modificar",
-                                        "color": Color(0xFF829AAF),
-                                        "icon": Icons.edit,
-                                      },
-                                      {
-                                        "title": "Eliminar",
-                                        "color": Color(0xFFCE4343),
-                                        "icon": Icons.delete,
-                                      },
-                                    ],
-                                  ),
-                                  SizedBox(height: 10,),
-                                  //FinishedObjectivesList(context),
-                                ],
-                              );
+                            if(!snapshot.hasData){
+                              return SizedBox();
                             }
-                            return SizedBox();
+                            thoughtsList = snapshot.data;
+                            print("DATA");
+                            for(var t in thoughtsList){
+                              print(t.situation);
+                            }
+                            return Column(
+                              children: [
+                                ThoughtsListView(
+                                  thoughtsList: thoughtsList,
+                                  popUpMenuOptions: [
+                                    {
+                                      "title": "Visualizar",
+                                      "color": Colors.orange,
+                                      "icon": Icons.info,
+                                    },
+                                    {
+                                      "title": "Modificar",
+                                      "color": Color(0xFF829AAF),
+                                      "icon": Icons.edit,
+                                    },
+                                    {
+                                      "title": "Eliminar",
+                                      "color": Color(0xFFCE4343),
+                                      "icon": Icons.delete,
+                                    },
+                                  ],
+                                ),
+                                SizedBox(height: 10,),
+                                //FinishedObjectivesList(context),
+                              ],
+                            );
+
                           },
                         ),
                       ],
