@@ -39,8 +39,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DataBaseHelper dataBaseHelper = DataBaseHelper();
-  int indexSelectedAffirmation = 0;
-  List<dynamic> affirmationsList = [];
+  late int indexSelectedAffirmation;
 
   Future<bool?> showWarning(BuildContext context){
     return showDialog<bool>(
@@ -76,6 +75,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    indexSelectedAffirmation = 0;
     initAsync();
     super.initState();
   }
@@ -302,32 +302,32 @@ class _HomePageState extends State<HomePage> {
           ),
           child: Container(
             padding: EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                GestureDetector(
-                  child: Container(
-                    alignment: Alignment.topRight,
-                    child: Icon(Icons.more_horiz),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PositiveReinforcementPage(widget.userId),
+            child: FutureBuilder(
+              future: fetchAffirmationData(),
+              builder: (context, AsyncSnapshot<List<dynamic>> snapshot){
+                if (!snapshot.hasData){
+                  return Center(
+                    child: SpinKitThreeInOut(color: darkPurple,),
+                  );
+                }
+                List? affirmationsList = snapshot.data;
+                return Column(
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        alignment: Alignment.topRight,
+                        child: Icon(Icons.more_horiz),
                       ),
-                    ).then((value) => setState(() {}));
-                  },
-                ),
-                FutureBuilder(
-                  future: fetchAffirmationData(),
-                  builder: (context, AsyncSnapshot<List<dynamic>> snapshot){
-                    if (!snapshot.hasData){
-                      return Center(
-                        child: SpinKitThreeInOut(color: darkPurple,),
-                      );
-                    }
-                    List? affirmationsList = snapshot.data;
-                    return Container(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PositiveReinforcementPage(widget.userId),
+                          ),
+                        ).then((value) => setState(() {}));
+                      },
+                    ),
+                    Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         affirmationsList!.isNotEmpty ? '"${affirmationsList[indexSelectedAffirmation].message}"': "No hay afirmaciones",
@@ -337,28 +337,28 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold
                         ),
                       ),
-                    );
-                  },
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                  alignment: Alignment.bottomRight,
-                  child: IconButton(
-                    icon: Image.asset(
-                      'assets/icons/change.png',
-                      width: 18,
-                      height: 18,
                     ),
-                    onPressed: () {
-                      indexSelectedAffirmation += 1;
-                      if (indexSelectedAffirmation >= affirmationsList.length) {
-                        indexSelectedAffirmation = 0;
-                      }
-                      setState(() {});
-                    },
-                  ),
-                ),
-              ],
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.04,
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        icon: Image.asset(
+                          'assets/icons/change.png',
+                          width: 18,
+                          height: 18,
+                        ),
+                        onPressed: () {
+                          indexSelectedAffirmation += 1;
+                          if (indexSelectedAffirmation >= affirmationsList.length) {
+                            indexSelectedAffirmation = 0;
+                          }
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),

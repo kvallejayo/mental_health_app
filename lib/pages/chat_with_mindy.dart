@@ -45,8 +45,62 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
       "content": "Es la capacidad de comprender, usar y manejar sus propias emociones de manera positiva para aliviar el estrés, comunicarse de manera efectiva, empatizar con los demás, superar desafíos y calmar conflictos. La inteligencia emocional te ayuda a construir relaciones más sólidas, tener éxito en la escuela y el trabajo, y lograr sus objetivos profesionales y personales.",
     },
   ];
+  var selectedOption;
+  late List<Widget> messages;
 
-  var selectedOption = null;
+  @override
+  void initState() {
+    messages = [
+      Message(
+        senderName: "Mindy",
+        senderAvatar: "assets/bot_emocionado.png",
+        content: Text(
+          "¡Hola, soy Mindy! Te ayudaré a complementar tus dudas sobre conceptos de la salud mental.",
+        ),
+      ),
+      Message(
+        senderName: "Mindy",
+        senderAvatar: "assets/bot_emocionado.png",
+        content: IntrinsicWidth(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text("Elige una de las opciones:"),
+              for(var option in optionsData)
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: option["color"],
+                  ),
+                  child: Text(
+                    option["title"],
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                  onPressed: (){
+                    messages.add(
+                      Message(
+                        content: Text("Elijo la opción: ${option["title"][0]}"),
+                      )
+                    );
+                    messages.add(
+                      Message(
+                        senderName: "Mindy",
+                        senderAvatar: "assets/bot_emocionado.png",
+                        content: Text(option["content"]),
+                      ),
+                    );
+                    setState(() {});
+                  },
+                ),
+            ],
+          ),
+        ),
+      ),
+    ];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,53 +154,11 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
                 Container(
                   height: 630,
                   child: SingleChildScrollView(
+                    reverse: true,
                     child: Container(
                       padding: EdgeInsets.all(15),
                       child: Column(
-                        children: [
-                          Message(
-                            recieverName: "Mindy",
-                            recieverImage: "assets/bot_emocionado.png",
-                            content: Text(
-                              "¡Hola, soy Mindy! Te ayudaré a complementar tus dudas sobre conceptos de la salud mental.",
-                            ),
-                          ),
-                          Message(
-                            recieverName: "Mindy",
-                            recieverImage: "assets/bot_emocionado.png",
-                            content: IntrinsicWidth(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text("Elige una de las opciones:"),
-                                  for(var option in optionsData)
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: option["color"],
-                                      ),
-                                      child: Text(
-                                        option["title"],
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                      onPressed: (){
-
-                                        setState(() {
-                                          selectedOption = option;
-                                        });
-                                      },
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          selectedOption == null ? SizedBox() : Message(
-                            recieverName: "Mindy",
-                            recieverImage: "assets/bot_emocionado.png",
-                            content: Text(selectedOption["content"]),
-                          ),
-                        ],
+                        children: messages,
                       ),
                     )
                   ),
@@ -158,48 +170,50 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
       ),
       bottomNavigationBar: BottomNavigation(
         idSend: widget.userId,
-        //isTheSameChatMindy: true,
-        //mindyColorIcon: false,
+        isTheSameChatMindy: true,
+        mindyColorIcon: false,
       ),
     );
   }
 
   Widget Message({
-    required String recieverName,
-    required String recieverImage,
+    String? senderName,
+    String? senderAvatar,
     required Widget content,
   }) {
     return Container(
       padding: EdgeInsets.only(bottom: 10),
       child: IntrinsicHeight(
         child: Row(
+          mainAxisAlignment: senderName == null ? MainAxisAlignment.end : MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
+            senderAvatar == null ? SizedBox() : Container(
               alignment: Alignment.topCenter,
-              child: Image.asset(recieverImage, width: 60,),
+              child: Image.asset(senderAvatar, width: 60,),
             ),
             SizedBox(width: 15,),
             IntrinsicWidth(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
+                  senderName == null ? SizedBox() : Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      recieverName,
+                      senderName,
                       style: TextStyle(
                         color: Color(0xFF7C7C88),
                         fontSize: 13,
                       ),
                     ),
                   ),
+
                   SizedBox(height: 5,),
                   Container(
-                    width: 270,
+                    width: senderName == null ? 140 : 270,
                     decoration: BoxDecoration(
-                      color: lightWaterGreen,
+                      color: senderName == null ? softPink : lightWaterGreen,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     padding: EdgeInsets.all(15),

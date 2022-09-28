@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, non_constant_identifier_names, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: deprecated_member_use, non_constant_identifier_names, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -139,6 +139,8 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
   }
 
   bool canCreate = false;
+  bool isCreateButtonActive = true;
+
   late Map<String, dynamic> newAlarmProperties;
   List<dynamic> affirmationsList = [];
 
@@ -152,17 +154,7 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
   void initState() {
     //notificationService = LocalNotificationService();
     //notificationService.initializa();
-    newAlarmProperties = {
-      "monday": null,
-      "tuesday": null,
-      "wednesday": null,
-      "thursday": null,
-      "friday": null,
-      "saturday": null,
-      "sunday": null,
-      "fireTime": DateTime.now(),
-      "enable": true,
-    };
+    newAlarmProperties = emptyAlarmProperties;
     init();
     super.initState();
   }
@@ -176,7 +168,142 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(child: Cuerpo(context)),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: MediaQuery.of(context).size.height * 1,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        'assets/fondos/afirmaciones-reforzamiento.png',
+                      ),
+                    ),
+                  ),
+                ),
+                SafeArea(
+                  child: FutureBuilder(
+                    future: getAffirmationsPreferenceData(),
+                    builder: (context, AsyncSnapshot<List<dynamic>> snapshot){
+                      if (snapshot.hasData){
+                        affirmationsList = snapshot.data!;
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Afirmaciones",
+                                style: TextStyle(
+                                  color: Color.fromRGBO(67, 58, 108, 10),
+                                  fontSize: 35.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 410,
+                                child: Divider(
+                                  color: Color.fromRGBO(146, 150, 187, 10),
+                                  thickness: 1,
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                child: Text(
+                                  "Afirmaciones personalizadas",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(146, 150, 187, 10),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+
+                              NewAffirmationForm(affirmationsList),
+
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                child: const Text(
+                                  "Mis Afirmaciones",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(146, 150, 187, 10),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                child: MyAffirmationsList(affirmationsList),
+                              ),
+
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                child: Text("Configuración",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(146, 150, 187, 10),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 60,
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(.1),
+                                        blurRadius: 3,
+                                      ),
+                                    ],
+                                    color: Color.fromRGBO(250, 233, 207, 1),
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "Recibir afirmaciones diarias.",
+                                          style: TextStyle(fontSize: 17),
+                                        ),
+                                      ),
+                                      CupertinoSwitch(
+                                        value: masterSwitch,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            actionMasterSwitch(value);
+                                            masterSwitch = value;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigation(idSend: widget.userId),
     );
   }
@@ -187,143 +314,6 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
       affirmationsList[i]["alarmProperties"]["enable"] = value;
     }
     updateUserAffirmationsPreferenceData(affirmationsList);
-  }
-
-  Widget Cuerpo(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Stack(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height * 1,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    'assets/fondos/afirmaciones-reforzamiento.png',
-                  ),
-                ),
-              ),
-            ),
-            SafeArea(
-              child: FutureBuilder(
-                future: getAffirmationsPreferenceData(),
-                builder: (context, AsyncSnapshot<List<dynamic>> snapshot){
-                  if (snapshot.hasData){
-                    affirmationsList = snapshot.data!;
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Afirmaciones",
-                            style: TextStyle(
-                              color: Color.fromRGBO(67, 58, 108, 10),
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 410,
-                            child: Divider(
-                              color: Color.fromRGBO(146, 150, 187, 10),
-                              thickness: 1,
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 5),
-                            child: Text(
-                              "Afirmaciones personalizadas",
-                              style: TextStyle(
-                                color: Color.fromRGBO(146, 150, 187, 10),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-
-                          NewAffirmationForm(affirmationsList),
-
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 5),
-                            child: const Text(
-                              "Mis Afirmaciones",
-                              style: TextStyle(
-                                color: Color.fromRGBO(146, 150, 187, 10),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                            child: MyAffirmationsList(affirmationsList),
-                          ),
-
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 5),
-                            child: Text("Configuración",
-                              style: TextStyle(
-                                color: Color.fromRGBO(146, 150, 187, 10),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 60,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(.1),
-                                    blurRadius: 3,
-                                  ),
-                                ],
-                                color: Color.fromRGBO(250, 233, 207, 1),
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "Recibir afirmaciones diarias.",
-                                      style: TextStyle(fontSize: 17),
-                                    ),
-                                  ),
-                                  CupertinoSwitch(
-                                    value: masterSwitch,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        actionMasterSwitch(value);
-                                        masterSwitch = value;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  return const SizedBox();
-                },
-              ),
-            ),
-          ],
-        )
-      ],
-    );
   }
 
   final TextEditingController message = TextEditingController();
@@ -341,8 +331,6 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
         ),
     );
 
-    print(newAffirmation.message);
-
     Map<String, dynamic> newAffirmationJson = newAffirmation.toJson();
     newAffirmationJson["alarmProperties"] = alarmProperties;
 
@@ -351,6 +339,11 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
     updateUserAffirmationsPreferenceData(affirmationsList);
   }
   Widget NewAffirmationForm(List<dynamic> affirmationsList) {
+
+    if(newAlarmProperties["fireTime"].runtimeType == String){
+      newAlarmProperties["fireTime"] = DateTime.parse(newAlarmProperties["fireTime"]);
+    }
+
     return Container(
       width: MediaQuery.of(context).size.width - 45,
       decoration: BoxDecoration(
@@ -368,6 +361,7 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
               labelText: "Escribe tu afirmación",
               hintInsteadOfLabel: true,
               backgroundColor: Colors.white,
+              borderColor: waterGreen,
             ),
 
             SizedBox(height: 10,),
@@ -443,14 +437,19 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
                   ),
                 ),
               ),
-              onPressed: () async {
+              onPressed: isCreateButtonActive ? () async {
+
                 for(int i = 0 ; i < weekDays.length; i++){
                   if(newAlarmProperties[weekDays[i].toLowerCase()] == "Active"){
                     canCreate = true;
                   }
                 }
                 if(canCreate){
+
+                  setState(() {isCreateButtonActive = false;});
+
                   DateTime fireTime = newAlarmProperties["fireTime"];
+
                   for (int i = 0 ; i < weekDays.length; i++){
                     if(newAlarmProperties[weekDays[i].toLowerCase()] == "Active"){
                       DateTime date = currentWeek.day(i);
@@ -461,28 +460,20 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
                         fireTime.hour,
                         fireTime.minute,
                       );
-
-                      /*
-                      await notificationService.showScheduledNotification(
-                        id: 0,
-                        title: "Tus Afirmaciones",
-                        body: message.text,
-                        fireDate: newAlarmProperties[weekDays[i].toLowerCase()],
-                      );
-                       */
                     }
                   }
-                  await createNewAffirmation(newAlarmProperties);
+                  await createNewAffirmation(newAlarmProperties).then((value) => null);
                 } else {
                   Fluttertoast.showToast(msg: "Seleccione al menos un día", toastLength: Toast.LENGTH_LONG);
                 }
-                setState(() {
-                  newAlarmProperties = emptyAlarmProperties;
-                  message.text = "";
-                  canCreate = false;
-                });
-                //Navigator.push(context, MaterialPageRoute(builder: (context) => PositiveReinforcementPage(widget.idSend)));
-              },
+                newAlarmProperties = emptyAlarmProperties;
+                message.text = "";
+                canCreate = false;
+                isCreateButtonActive = true;
+
+                setState(() {});
+
+              } : null,
             ),
             SizedBox(height: 10,),
           ],
