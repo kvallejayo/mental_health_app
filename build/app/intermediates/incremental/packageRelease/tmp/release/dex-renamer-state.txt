@@ -1,4 +1,4 @@
-#Sun Sep 25 00:06:55 COT 2022
-base.0=D\:\\Projects\\Android Studio\\mental_health_app\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+#Tue Sep 27 23:43:39 COT 2022
+base.0=D\:\\Projects\\GitHubRepositories\\mental_health_app\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

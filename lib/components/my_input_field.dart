@@ -97,10 +97,7 @@ class _MyInputFieldState extends State<MyInputField> {
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            width: 2,
-            color: widget.borderColor,
-          ),
+          borderSide: BorderSide.none,
         ),
       ),
     );

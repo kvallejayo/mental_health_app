@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Projects\\Android Studio\\mental_health_app\\build\\fluttertoast\\intermediates\\merged_res\\release\\values-vi\\values-vi.xml",
+            "outputFile": "D:\\Projects\\GitHubRepositories\\mental_health_app\\build\\fluttertoast\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-vi\\values-vi.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\aldai\\.gradle\\caches\\transforms-3\\acbce933e4b464a5224ed377a62db1f5\\transformed\\core-1.6.0\\res\\values-vi\\values-vi.xml",
+                    "source": "C:\\Users\\Aldair\\.gradle\\caches\\transforms-3\\acbce933e4b464a5224ed377a62db1f5\\transformed\\core-1.6.0\\res\\values-vi\\values-vi.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "D:\\Projects\\Android Studio\\mental_health_app\\build\\fluttertoast\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-vi\\values-vi.xml",
+            "outputFile": "D:\\Projects\\GitHubRepositories\\mental_health_app\\build\\fluttertoast\\intermediates\\merged_res\\release\\values-vi\\values-vi.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\aldai\\.gradle\\caches\\transforms-3\\acbce933e4b464a5224ed377a62db1f5\\transformed\\core-1.6.0\\res\\values-vi\\values-vi.xml",
+                    "source": "C:\\Users\\Aldair\\.gradle\\caches\\transforms-3\\acbce933e4b464a5224ed377a62db1f5\\transformed\\core-1.6.0\\res\\values-vi\\values-vi.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

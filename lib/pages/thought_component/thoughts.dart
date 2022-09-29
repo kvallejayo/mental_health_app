@@ -27,7 +27,7 @@ class _ThoughtsState extends State<Thoughts> {
   DataBaseHelper dataBaseHelper = DataBaseHelper();
   List<Thought> thoughtsList = [];
 
-  Future<List<dynamic>> fetchThoughtsData()async{
+  Future<List<Thought>> fetchThoughtsData()async{
     final name = await UserSecureStorage.getUsername() ?? '';
     final password = await UserSecureStorage.getPassword() ?? '';
     return await dataBaseHelper.getThoughts(widget.userId, name, password);
@@ -56,34 +56,28 @@ class _ThoughtsState extends State<Thoughts> {
                         Row(
                           children: [
                             H1Label("Mis Pensamientos"),
-                            Container(
-                              child: IconButton(
-                                icon: Icon(Icons.add_circle, color: waterGreen, size: 30,),
-                                iconSize: 20,
-                                onPressed: () {
+                            IconButton(
+                              icon: Icon(Icons.add_circle, color: waterGreen, size: 30,),
+                              iconSize: 20,
+                              onPressed: () {
 
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => CreateThought(userId: widget.userId),
-                                    ),
-                                  ).then((value) => setState(() {}));
-                                },
-                              ),
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CreateThought(userId: widget.userId),
+                                  ),
+                                ).then((value) => setState(() {}));
+                              },
                             ),
                           ],
                         ),
                         FutureBuilder(
                           future: fetchThoughtsData(),
-                          builder: (context, AsyncSnapshot<dynamic> snapshot){
+                          builder: (context, AsyncSnapshot<List<Thought>> snapshot){
                             if(!snapshot.hasData){
                               return SizedBox();
                             }
-                            thoughtsList = snapshot.data;
-                            print("DATA");
-                            for(var t in thoughtsList){
-                              print(t.situation);
-                            }
+                            thoughtsList = snapshot.data!;
                             return Column(
                               children: [
                                 ThoughtsListView(

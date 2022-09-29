@@ -74,18 +74,11 @@ class _PositiveReinforcementPageState extends State<PositiveReinforcementPage> {
     if (userDataStr == null){
       return [];
     }
-
     Map<String, dynamic>? userData = jsonDecode(userDataStr);
+    if (userData?["affirmationsData"] == null){
+      return [];
+    }
     List affirmationsList = userData?["affirmationsData"];
-
-    /*
-    print("CURRENT AFFIRMATION LIST");
-    var spaces = ' ' * 4;
-    var encoder = JsonEncoder.withIndent(spaces);
-    log(encoder.convert(affirmationsList));
-
-     */
-
     return affirmationsList;
   }
 

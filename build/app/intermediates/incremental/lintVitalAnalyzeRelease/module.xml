@@ -1,12 +1,12 @@
 <lint-module
     format="1"
-    dir="D:\Projects\Android Studio\mental_health_app\android\app"
+    dir="D:\Projects\GitHubRepositories\mental_health_app\android\app"
     name=":app"
     type="APP"
     maven="android:app:"
     gradle="7.1.2"
-    buildFolder="D:\Projects\Android Studio\mental_health_app\build\app"
-    bootClassPath="C:\Users\aldai\AppData\Local\Android\sdk\platforms\android-31\android.jar;C:\Users\aldai\AppData\Local\Android\sdk\build-tools\30.0.3\core-lambda-stubs.jar"
+    buildFolder="D:\Projects\GitHubRepositories\mental_health_app\build\app"
+    bootClassPath="C:\Users\Aldair\AppData\Local\Android\sdk\platforms\android-31\android.jar;C:\Users\Aldair\AppData\Local\Android\sdk\build-tools\30.0.3\core-lambda-stubs.jar"
     javaSourceLevel="1.8"
     compileTarget="android-31">
   <lintOptions

@@ -27,6 +27,27 @@ class _LearnPageState extends State<LearnPage> {
     "assets/learn/productividad consejo.png",
   ];
 
+  List<Map<String, dynamic>> recommendations = [
+    {
+      "title": "¿Cómo la salud mental puede afectar en mis estudios?",
+      "content": "Los problemas de salud mental tienen un gran impacto en el rendimiento académico, aumentan el riesgo de abandono de las carreras y actúan insidiosamente en la percepción que las personas tienen de sí mismas y en sus relaciones sociales. Además, pueden ser fuertes predictores de un menor rendimiento ocupacional y nivel de empleabilidad en el futuro. Por ello, recomendamos acudir a un profesional si sientes que no lo puedes manejar y necesitas ayuda.",
+      "image": "assets/learn/salud estudios.png",
+      "card": "assets/learn/estudios salud.png",
+    },
+    {
+      "title": "¿Cómo cuidar mi salud mental?",
+      "content": "1. Reconoce tus emociones. 2. Piensa en lo que puedes hacer para distraerte. 3. Mantén el contacto con tus seres queridos. 4. Fíjate en las cosas buenas. 5. Sé amable contigo y con los demás. 6. No descuides tu salud. 7. Conoce y comparte experiencias con otros adolescentes y jóvenes. 8. Si te gusta dibujar y pintar, ¡comparte tu talento!",
+      "image": "assets/learn/como cuidar mi salud mental 1.png",
+      "card": "assets/learn/salud mental principal.png",
+    },
+    {
+      "title": "9 consejos para mejorar tu productividad personal",
+      "content": "1.	Iniciar con las tareas más difíciles. 2.	Delegar responsabilidades. 3.	Usar una pizarra. 4.	Tomar un descanso. 5.	Ahorrar tiempo. 6.	Clasificar tareas. 7.	Mantener el orden. 8.	Aprender a decir “No”. 9.	Iniciar el día temprano.",
+      "image": "assets/learn/consejo productividad.png",
+      "card": "assets/learn/productividad consejo.png",
+    },
+  ];
+
   List<Map<String, dynamic>> psychologyConcepts = [
     {
       "title": "¿Qué es CBT?",
@@ -121,83 +142,20 @@ class _LearnPageState extends State<LearnPage> {
               child: Column(
                 children: [
                   TitleHeader("Aprende algo nuevo"),
-                  Column(
-                    children: [
-                      H1Label("Recomendaciones para ti"),
-                      CarouselSlider(
-                        items: [
-                          for (var recommendationImg in recommendationsImgs)
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        RecommendationsDetailsView(widget.userId),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.3),
-                                      spreadRadius: 0.1,
-                                      blurRadius: 10,
-                                    ),
-                                  ],
-                                ),
-                                child: Image.asset(recommendationImg),
-                              ),
-                            ),
-                        ],
-                        options: CarouselOptions(
-                          height: 150,
-                          autoPlay: true,
-                          enlargeCenterPage: true,
-                          autoPlayInterval: Duration(seconds: 5),
-                          autoPlayCurve: Curves.easeInOut,
-                          scrollDirection: Axis.horizontal,
-                          viewportFraction: 0.5,
-                        ),
-                      ),
-
-                      SizedBox(height: 10,),
-
-                      H1Label("Psicología"),
-
-                      SizedBox(height: 10,),
-
-                      for(var psychologyConcept in psychologyConcepts)
-                        GestureDetector(
-                          child: Image.asset(psychologyConcept["cardImg"], width: 350,),
-                          onTap: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (builder) => KnowledgeDetails(
-                                  userId: widget.userId,
-                                  knowledgeInfo: psychologyConcept,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-
-                      H1Label("Nuevos conocimientos"),
-
-                      Wrap(
-                        alignment: WrapAlignment.spaceEvenly,
-                        children: [
-                          for (var knowledgeInfo in knowledgesInfo)
-                            GestureDetector(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      children: [
+                        H1Label("Recomendaciones para ti"),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            for (var recommendation in recommendations)
+                              GestureDetector(
                                 child: Container(
+                                  height: 140,
                                   decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(30),
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.grey.withOpacity(0.3),
@@ -206,26 +164,87 @@ class _LearnPageState extends State<LearnPage> {
                                       ),
                                     ],
                                   ),
-                                  height: 120,
-                                  width: MediaQuery.of(context).size.width / 3.7,
-                                  child: Image.asset(knowledgeInfo["cardImg"]),
+                                  child: Image.asset(recommendation["card"]),
                                 ),
-                              ),
-                              onTap: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (builder) => KnowledgeDetails(
-                                      userId: widget.userId,
-                                      knowledgeInfo: knowledgeInfo,
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => RecommendationsDetailsView(
+                                        idSend: widget.userId,
+                                        recommendation: recommendation,
+                                      ),
                                     ),
+                                  );
+                                },
+                              ),
+                          ],
+                        ),
+
+                        SizedBox(height: 10,),
+
+                        H1Label("Psicología"),
+
+                        SizedBox(height: 10,),
+
+                        for(var psychologyConcept in psychologyConcepts)
+                          GestureDetector(
+                            child: Image.asset(psychologyConcept["cardImg"], width: 350,),
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (builder) => KnowledgeDetails(
+                                    userId: widget.userId,
+                                    knowledgeInfo: psychologyConcept,
                                   ),
-                                );
-                              },
-                            ),
-                        ],
-                      )
-                    ],
+                                ),
+                              );
+                            },
+                          ),
+
+                        H1Label("Nuevos conocimientos"),
+
+                        Wrap(
+                          alignment: WrapAlignment.spaceEvenly,
+                          children: [
+                            for (var knowledgeInfo in knowledgesInfo)
+                              GestureDetector(
+                                child: Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(15),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.3),
+                                          spreadRadius: 0.1,
+                                          blurRadius: 10,
+                                        ),
+                                      ],
+                                    ),
+                                    height: 120,
+                                    width: MediaQuery.of(context).size.width / 3.7,
+                                    child: Image.asset(knowledgeInfo["cardImg"]),
+                                  ),
+                                ),
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (builder) => KnowledgeDetails(
+                                        userId: widget.userId,
+                                        knowledgeInfo: knowledgeInfo,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),

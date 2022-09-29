@@ -3,6 +3,8 @@
 import 'dart:convert';
 import 'dart:io';
 //import User from '../models/User';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/Affimation.dart';
 import '../models/Exercise.dart';
 import '../models/Goal.dart';
@@ -563,6 +565,8 @@ class DataBaseHelper {
     }
   }
 
+
+  
   Future<Thought> updateThought(
       String userId,
       String userName,
@@ -574,8 +578,6 @@ class DataBaseHelper {
 
     Map<String,dynamic> thoughtJson = thought.toJson();
     thoughtJson.remove("id");
-    //TODO: FIX THIS IN BACKEND
-    //thoughtJson.remove("moodsFelt");
 
     http.Response result = await http.put(
       requestUrl,
@@ -586,6 +588,17 @@ class DataBaseHelper {
       },
       body: json.encode(thoughtJson),
     );
+
+    //ALMACENANDO EN LOCAL (SOLUCION TEMPORAL)
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    String? userDataStr = pref.getString(userId);
+    Map<String, dynamic> userData = userDataStr == null ? {} : jsonDecode(userDataStr);
+    var index = userData["thoughts"].indexWhere((element) => element["id"] == thought.id);
+    userData["thoughts"][index] = thought.toJson();
+
+    await pref.setString(userId, jsonEncode(userData));
+    return Thought.fromJson(userData["thoughts"][index]);
+
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(result.body);
       return Thought.fromJson(jsonResponse);
@@ -600,15 +613,11 @@ class DataBaseHelper {
       String password,
       Thought thought
       ) async {
+
     final token = await authenticate(userName, password);
     final requestUrl = "${BASE_URL}api/users/$userId/thoughtRecords";
-
     Map<String,dynamic> thoughtJson = thought.toJson();
     thoughtJson.remove("id");
-
-    //TODO: FIX THIS IN BACKEND
-    //thoughtJson.remove("moodsFelt");
-
     http.Response result = await http.post(
       requestUrl,
       headers: {
@@ -618,15 +627,35 @@ class DataBaseHelper {
       },
       body: json.encode(thoughtJson),
     );
+
+    //ALMACENANDO EN LOCAL (SOLUCION TEMPORAL)
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    String? userDataStr = pref.getString(userId);
+    Map<String, dynamic> userData = userDataStr == null ? {} : jsonDecode(userDataStr);
+
+    if(userData["thoughts"] == null){
+      userData["thoughts"] = [];
+    }
+    if(userData["thoughts"].isEmpty){
+      thought.id = 0;
+    } else{
+      int lastIndex = userData["thoughts"].length - 1;
+      thought.id = userData["thoughts"][lastIndex]["id"] + 1;
+    }
+    userData["thoughts"].add(thought.toJson());
+    await pref.setString(userId, jsonEncode(userData));
+    return thought;
+
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(result.body);
       return Thought.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
     }
+
   }
 
-  Future<List> getThoughts(
+  Future<List<Thought>> getThoughts(
       String userId,
       String userName,
       String password
@@ -642,7 +671,18 @@ class DataBaseHelper {
         'Authorization': 'Bearer $token',
       }
     );
-    print(json.decode(result.body));
+
+    //ALMACENANDO EN LOCAL (SOLUCION TEMPORAL)
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    String? userDataStr = pref.getString(userId);
+    Map<String, dynamic> userData = userDataStr == null ? {} : jsonDecode(userDataStr);
+
+    if(userData["thoughts"] == null){
+      return [];
+    }
+    var list = userData["thoughts"] as List;
+    return list.map((jsonObj) => Thought.fromJson(jsonObj)).toList();
+
     if (result.statusCode == HttpStatus.ok) {
       var list = json.decode(result.body)["content"] as List;
       return list.map((jsonObj) => Thought.fromJson(jsonObj)).toList();
@@ -668,12 +708,27 @@ class DataBaseHelper {
         'Authorization': 'Bearer $token',
       },
     );
+
+    //ALMACENANDO EN LOCAL (SOLUCION TEMPORAL)
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    String? userDataStr = pref.getString(userId);
+    Map<String, dynamic> userData = userDataStr == null ? {} : jsonDecode(userDataStr);
+    userData["thoughts"].removeWhere((element) => element["id"] == int.parse(thoughtId));
+    await pref.setString(userId, jsonEncode(userData));
+    return 200;
+
     if (result.statusCode == HttpStatus.ok) {
       return HttpStatus.ok;
     } else {
       throw Exception('Failed request');
     }
   }
+
+
+
+
+
+
 
   Future<Reminder> createReminder(
       String userId,

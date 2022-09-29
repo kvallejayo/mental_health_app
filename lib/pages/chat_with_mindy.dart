@@ -90,6 +90,47 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
                         content: Text(option["content"]),
                       ),
                     );
+                    messages.add(
+                      Message(
+                        senderName: "Mindy",
+                        senderAvatar: "assets/bot_emocionado.png",
+                        content: IntrinsicWidth(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text("Elige una de las opciones:"),
+                              for(var option in optionsData)
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: option["color"],
+                                  ),
+                                  child: Text(
+                                    option["title"],
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  onPressed: (){
+                                    messages.add(
+                                        Message(
+                                          content: Text("Elijo la opción: ${option["title"][0]}"),
+                                        )
+                                    );
+                                    messages.add(
+                                      Message(
+                                        senderName: "Mindy",
+                                        senderAvatar: "assets/bot_emocionado.png",
+                                        content: Text(option["content"]),
+                                      ),
+                                    );
+                                    setState(() {});
+                                  },
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
                     setState(() {});
                   },
                 ),

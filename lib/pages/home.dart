@@ -104,11 +104,11 @@ class _HomePageState extends State<HomePage> {
     List<dynamic> moods = ["Happy", "Scare", "Sad", "Angry", "Disgust"];
     List<dynamic> emociones = ["Alegria", "Miedo", "Tristeza", "Enojo", "Asco"];
     List<dynamic> moodMessages = [
-      "Estoy feliz de que tu estes feliz! :)",
-      "No temas, estoy contigo.",
-      "A mal tiempo buena cara!",
-      "Comprendo tu molestia. Respira profundo",
-      "Ew! Yo tambien me sentiria asqueado",
+      "Las personas son tan felices como ellas deciden ser. ¡La felicidad es una decisión que debemos tomar cada día!",
+      "Sentir es lo más valiente que hay, ¡Sé que ha sido duro, pero todavía estamos de pie! Respira profundo e intentalo de nuevo.",
+      "Cuando cambias la manera en que miras las cosas, las cosas que miras, cambiarán también. ¡Tú puedes!",
+      "Cuando estés molesto cuenta hasta diez antes de hablar. Si estas muy molesto, cuenta hasta cien.",
+      "¡En la vida algunas veces se gana, otras veces se aprende! Si quieres que la vida te sonría, prueba primero tu buen humor.",
     ];
 
     double moodIconSize = 50;

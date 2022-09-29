@@ -23,9 +23,9 @@ class ThoughtDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controllerSituation.text = thought.situation;
-    controllerThoughts.text = thought.situation;
-    controllerActions.text = thought.situation;
-    controllerTipForFriend.text = thought.situation;
+    controllerThoughts.text = thought.thoughts;
+    controllerActions.text = thought.actions;
+    controllerTipForFriend.text = thought.tipForFriend;
     moodsFelt = thought.moodsFelt;
 
     return Scaffold(
