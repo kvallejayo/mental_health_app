@@ -61,7 +61,7 @@ class Welcome extends StatelessWidget {
                   SizedBox(height: 30,),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: waterGreen,
+                      backgroundColor: waterGreen,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ),

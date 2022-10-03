@@ -93,7 +93,7 @@ class DataBaseHelper {
       body: json.encode(userJson),
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return User.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -118,7 +118,7 @@ class DataBaseHelper {
       },
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return User.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -164,9 +164,9 @@ class DataBaseHelper {
       },
       body: json.encode(exercise),
     );
-    print(json.decode(result.body));
+    print(json.decode(utf8.decode(result.bodyBytes)));
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Exercise.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -194,9 +194,9 @@ class DataBaseHelper {
       },
       body: json.encode(exerciseJson),
     );
-    print(json.decode(result.body));
+    print(json.decode(utf8.decode(result.bodyBytes)));
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Exercise.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -228,7 +228,7 @@ class DataBaseHelper {
 
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return jsonResponse['content'];
     } else {
       throw Exception('Failed request');
@@ -257,7 +257,7 @@ class DataBaseHelper {
       body: json.encode(affirmationJson),
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Affirmation.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -287,7 +287,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Affirmation.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -311,7 +311,7 @@ class DataBaseHelper {
       },
     );
     if (result.statusCode == HttpStatus.ok) {
-      var affirmationMapsList = json.decode(result.body)["content"] as List;
+      var affirmationMapsList = json.decode(utf8.decode(result.bodyBytes))["content"] as List;
       return affirmationMapsList.map((affirmationJson) => Affirmation.fromJson(affirmationJson)).toList();
     } else {
       throw Exception('Failed request');
@@ -359,7 +359,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Affirmation.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -390,7 +390,7 @@ class DataBaseHelper {
       }),
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return SleepRecord.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -415,7 +415,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      var list = json.decode(result.body)["content"] as List;
+      var list = json.decode(utf8.decode(result.bodyBytes))["content"] as List;
       return list.map((json) => SleepRecord.fromJson(json)).toList();
     } else {
       throw Exception('Failed request');
@@ -450,7 +450,7 @@ class DataBaseHelper {
 
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return jsonResponse['content'];
     } else {
       throw Exception('Failed request');
@@ -482,7 +482,7 @@ class DataBaseHelper {
       body: json.encode(goalJson),
     );
     if (result.statusCode == HttpStatus.ok) {
-      return Goal.fromJson(json.decode(result.body));
+      return Goal.fromJson(json.decode(utf8.decode(result.bodyBytes)));
     } else {
       throw Exception('Failed request');
     }
@@ -511,7 +511,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      return Goal.fromJson(json.decode(result.body));
+      return Goal.fromJson(json.decode(utf8.decode(result.bodyBytes)));
     } else {
       throw Exception('Failed request');
     }
@@ -532,7 +532,7 @@ class DataBaseHelper {
       'Authorization': 'Bearer $token',
     });
     if (result.statusCode == HttpStatus.ok) {
-      var list = json.decode(result.body)["content"] as List;
+      var list = json.decode(utf8.decode(result.bodyBytes))["content"] as List;
       return list.map((json) => Goal.fromJson(json)).toList();
     } else {
       throw Exception('Failed request');
@@ -558,7 +558,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      var list = json.decode(result.body)["content"] as List;
+      var list = json.decode(utf8.decode(result.bodyBytes))["content"] as List;
       return list.map((jsonItem) => Exercise.fromJson(jsonItem)).toList();
     } else {
       throw Exception('Failed request');
@@ -600,7 +600,7 @@ class DataBaseHelper {
     return Thought.fromJson(userData["thoughts"][index]);
 
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Thought.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -647,7 +647,7 @@ class DataBaseHelper {
     return thought;
 
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Thought.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -684,7 +684,7 @@ class DataBaseHelper {
     return list.map((jsonObj) => Thought.fromJson(jsonObj)).toList();
 
     if (result.statusCode == HttpStatus.ok) {
-      var list = json.decode(result.body)["content"] as List;
+      var list = json.decode(utf8.decode(result.bodyBytes))["content"] as List;
       return list.map((jsonObj) => Thought.fromJson(jsonObj)).toList();
     } else {
       throw Exception('Failed request');
@@ -753,7 +753,7 @@ class DataBaseHelper {
     );
     if (result.statusCode == HttpStatus.ok) {
 
-      return Reminder.fromJson(json.decode(result.body));
+      return Reminder.fromJson(json.decode(utf8.decode(result.bodyBytes)));
     } else {
       throw Exception('Failed request');
     }
@@ -781,7 +781,7 @@ class DataBaseHelper {
       body: json.encode(reminderJson),
     );
     if (result.statusCode == HttpStatus.ok) {
-      return Reminder.fromJson(json.decode(result.body));
+      return Reminder.fromJson(json.decode(utf8.decode(result.bodyBytes)));
     } else {
       throw Exception('Failed request');
     }
@@ -811,7 +811,7 @@ class DataBaseHelper {
       }),
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return Exercise.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -862,7 +862,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      var list = json.decode(result.body)["content"] as List;
+      var list = json.decode(utf8.decode(result.bodyBytes))["content"] as List;
       return list.map((jsonItem) => Reminder.fromJson(jsonItem)).toList();
     } else {
       throw Exception('Failed request');
@@ -970,7 +970,7 @@ class DataBaseHelper {
       body: json.encode(sleepRecordJson),
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return SleepRecord.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -1017,7 +1017,7 @@ class DataBaseHelper {
         }
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return jsonResponse['content'];
     } else {
       throw Exception('Failed request');
@@ -1051,7 +1051,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      var list = json.decode(result.body)["content"] as List;
+      var list = json.decode(utf8.decode(result.bodyBytes))["content"] as List;
       return list.map((jsonItem) => MoodTracker.fromJson(jsonItem)).toList();
     } else {
       throw Exception('Failed request');
@@ -1083,7 +1083,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return MoodTracker.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -1107,7 +1107,7 @@ class DataBaseHelper {
       },
     );
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return MoodTracker.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');
@@ -1137,7 +1137,7 @@ class DataBaseHelper {
     );
 
     if (result.statusCode == HttpStatus.ok) {
-      final jsonResponse = json.decode(result.body);
+      final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return MoodTracker.fromJson(jsonResponse);
     } else {
       throw Exception('Failed request');

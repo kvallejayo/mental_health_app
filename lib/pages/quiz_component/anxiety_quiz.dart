@@ -3,7 +3,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mental_health_app/models/AnxietyQuizModels.dart';
+import 'package:mental_health_app/pages/quiz_component/quiz_results_page.dart';
 
 import '../../Components/bottom_navigation_bar.dart';
 
@@ -162,7 +164,30 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             hasSelectedOption = false;
           });
         } else {
-          Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => ResultPage(score: _score, idSend: widget.idSend,),),);
+          String message;
+          if (_score < 5){
+            message = "De acuerdo con tus resultados tu nivel de ansiedad es mínima. No te olvides de realizar ejercicios de relajación 😊";
+          } else if (_score >= 5 && _score < 10) {
+            message = "De acuerdo con tus resultados tu nivel de ansiedad es leve. No te olvides de realizar ejercicios de relajación y ejercicios físicos 😊";
+          } else if (_score >= 10 && _score < 15) {
+            message = "De acuerdo con tus resultados tu nivel de ansiedad es moderada. Trabajemos en identificar cuáles son los factores que te generan estrés, llevar un registro de estos es importante para mejorar nuestro estado mental ";
+          } else {
+            message = "De acuerdo con tus resultados tu nivel de ansiedad es severa. Es normal que sientas miedo, pero recuerda que no estás solo y siempre puedes buscar ayuda profesional. Te recomiendo reservar una cita con un psicólogo en la sede a la que perteneces";
+          }
+
+          Map<String, dynamic> newQuizResults = {
+            "type": "Test de ansiedad",
+            "score": _score,
+            "message": message,
+            "date": DateFormat("yyyy-MM-dd HH:mm").format(DateTime.now()),
+          };
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => QuizResultsPage(userId: widget.idSend, quizResults: newQuizResults),
+            ),
+          );
         }
       },
     );
@@ -225,114 +250,3 @@ Color getColorForOption(Option option, Question question) {
 
   return Color.fromRGBO(104, 174, 174, 1.0);
 }
-
-class ResultPage extends StatelessWidget {
-
-  final String idSend;
-  final int score;
-  late String message = "";
-
-  ResultPage({Key? key, required this.score, required this.idSend}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-
-    if (score < 5){
-      message = "De acuerdo con tus resultados tu nivel de ansiedad es mínima. No te olvides de realizar ejercicios de relajación 😊";
-    } else if (score >= 5 && score < 10) {
-      message = "De acuerdo con tus resultados tu nivel de ansiedad es leve. No te olvides de realizar ejercicios de relajación y ejercicios físicos 😊";
-    } else if (score >= 10 && score < 15) {
-      message = "De acuerdo con tus resultados tu nivel de ansiedad es moderada. Trabajemos en identificar cuáles son los factores que te generan estrés, llevar un registro de estos es importante para mejorar nuestro estado mental ";
-    } else {
-      message = "De acuerdo con tus resultados tu nivel de ansiedad es severa. Es normal que sientas miedo, pero recuerda que no estás solo y siempre puedes buscar ayuda profesional. Te recomiendo reservar una cita con un psicólogo en la sede a la que perteneces";
-    }
-
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 1,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/fondos/home.png'
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: Text(
-                      "¡Está listo el resultado del test de autopercepción!",
-                      style: TextStyle(
-                        color: Color(0xFF9296BB),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15,),
-                  Image.asset("assets/botImage.png", width: 180,),
-                  SizedBox(height: 10,),
-                  Text(
-                    "Mindy",
-                    style: TextStyle(
-                      color: Color(0xFF7C7C88),
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 30,),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    alignment: Alignment.center,
-                    width: 300,
-                    child: Text(
-                      message,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFDFDEEC),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  SizedBox(height: 30,),
-                  GestureDetector(
-                    child: Container(
-                      child: Text(
-                        "VOLVER A TOMAR OTRO TEST",
-                        style: TextStyle(
-                          color: Color(0xFF686EAE),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    onTap: (){
-                      Navigator.pop(context);
-                    },
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigation(
-        isTheSameQuiz: true,
-        quizColorIcon: false,
-        idSend: idSend,
-      ),
-    );
-  }
-}
-
-

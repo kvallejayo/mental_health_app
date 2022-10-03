@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
       widget.username,
       password,
       moodTracker,
-    );
+    ).then((value) => print(value));
   }
 
   @override
@@ -226,10 +226,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         onPressed: (){
                           Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => QuizSelection(
-                              idSend: widget.userId,
-                              username: widget.username,
-                            ),
+                            builder: (context) => QuizSelection(userId: widget.userId, username: widget.username),
                           )).then((value) => setState(() {}));
                         },
                       ),
@@ -300,65 +297,73 @@ class _HomePageState extends State<HomePage> {
               BoxShadow(color: Colors.black.withOpacity(.1), blurRadius: 3)
             ],
           ),
+
           child: Container(
             padding: EdgeInsets.all(10.0),
-            child: FutureBuilder(
-              future: fetchAffirmationData(),
-              builder: (context, AsyncSnapshot<List<dynamic>> snapshot){
-                if (!snapshot.hasData){
-                  return Center(
-                    child: SpinKitThreeInOut(color: darkPurple,),
-                  );
-                }
-                List? affirmationsList = snapshot.data;
-                return Column(
-                  children: [
-                    GestureDetector(
-                      child: Container(
-                        alignment: Alignment.topRight,
-                        child: Icon(Icons.more_horiz),
+            child: Column(
+              children: [
+                GestureDetector(
+                  child: Container(
+                    alignment: Alignment.topRight,
+                    child: Icon(Icons.more_horiz),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PositiveReinforcementPage(widget.userId),
                       ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PositiveReinforcementPage(widget.userId),
+                    ).then((value) => setState(() {}));
+                  },
+                ),
+                FutureBuilder(
+                  future: fetchAffirmationData(),
+                  builder: (context, AsyncSnapshot<List<dynamic>> snapshot){
+                    if (!snapshot.hasData){
+                      return Center(
+                        child: SpinKitThreeInOut(color: darkPurple,),
+                      );
+                    }
+                    List? affirmationsList = snapshot.data;
+                    print("DATA");
+                    print(affirmationsList);
+                    return Column(
+                      children: [
+
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            affirmationsList!.isNotEmpty ? '"${affirmationsList[indexSelectedAffirmation].message}"': "No hay afirmaciones",
+                            style: TextStyle(
+                                color: Color.fromRGBO(67, 58, 108, 10),
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold
+                            ),
                           ),
-                        ).then((value) => setState(() {}));
-                      },
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        affirmationsList!.isNotEmpty ? '"${affirmationsList[indexSelectedAffirmation].message}"': "No hay afirmaciones",
-                        style: TextStyle(
-                            color: Color.fromRGBO(67, 58, 108, 10),
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold
                         ),
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                      alignment: Alignment.bottomRight,
-                      child: IconButton(
-                        icon: Image.asset(
-                          'assets/icons/change.png',
-                          width: 18,
-                          height: 18,
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.04,
+                          alignment: Alignment.bottomRight,
+                          child: IconButton(
+                            icon: Image.asset(
+                              'assets/icons/change.png',
+                              width: 18,
+                              height: 18,
+                            ),
+                            onPressed: () {
+                              indexSelectedAffirmation += 1;
+                              if (indexSelectedAffirmation >= affirmationsList.length) {
+                                indexSelectedAffirmation = 0;
+                              }
+                              setState(() {});
+                            },
+                          ),
                         ),
-                        onPressed: () {
-                          indexSelectedAffirmation += 1;
-                          if (indexSelectedAffirmation >= affirmationsList.length) {
-                            indexSelectedAffirmation = 0;
-                          }
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                  ],
-                );
-              },
+                      ],
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ),

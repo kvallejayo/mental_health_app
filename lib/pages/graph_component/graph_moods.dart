@@ -109,6 +109,7 @@ class _GraphMoodsPageState extends State<GraphMoodsPage> {
                               return Center(child: CircularProgressIndicator(),);
                             }
                             Map<String, dynamic>? moodTrackerDataMap = snapshot.data;
+                            //print(moodTrackerDataMap?["moodTrackerList"][0].message);
                             if(moodTrackerDataMap?["moodTrackerList"].length == 0){
                               return Text("Aun no se ha registrado emociones");
                             }

@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mental_health_app/Components/my_labels.dart';
+import 'package:mental_health_app/pages/quiz_component/quiz_records.dart';
+import 'package:mental_health_app/themes/my_colors.dart';
 
 import '../../Components/bottom_navigation_bar.dart';
 import 'anxiety_quiz.dart';
@@ -8,12 +11,12 @@ import 'depression_quiz.dart';
 
 class QuizSelection extends StatelessWidget {
 
-  final String idSend;
+  final String userId;
   final String username;
 
   const QuizSelection({
     Key? key,
-    required this.idSend,
+    required this.userId,
     required this.username,
   }) : super(key: key);
 
@@ -37,33 +40,18 @@ class QuizSelection extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: (){
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(Icons.arrow_back_ios_rounded,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          "Autopercepción",
-                          style: TextStyle(
-                            color: Color.fromRGBO(67, 58, 108, 10),
-                            fontSize: 35.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: 410,
-                    child: Divider(
-                      color: Color.fromRGBO(146, 150, 187, 10),
-                      thickness: 1,
+                  TitleHeader("Autopercepción"),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      icon: Icon(Icons.history_edu, color: darkPurple, size: 50,),
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => QuizRecords(userId: userId, username: username,)),
+                        );
+                      },
                     ),
                   ),
 
@@ -114,7 +102,7 @@ class QuizSelection extends StatelessWidget {
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => AnxietyQuiz(idSend: idSend,),),
+                              MaterialPageRoute(builder: (context) => AnxietyQuiz(idSend: userId,),),
                             );
                           },
                         ),
@@ -142,7 +130,7 @@ class QuizSelection extends StatelessWidget {
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => DepressionQuiz(idSend: idSend,),),
+                              MaterialPageRoute(builder: (context) => DepressionQuiz(idSend: userId,),),
                             );
                           },
                         ),
@@ -160,7 +148,7 @@ class QuizSelection extends StatelessWidget {
       bottomNavigationBar: BottomNavigation(
         isTheSameQuiz: true,
         quizColorIcon: false,
-        idSend: idSend,
+        idSend: userId,
       ),
     );
   }

@@ -273,7 +273,7 @@ class _RecordExercisesCreateState extends State<RecordExercisesCreate> {
                                     child: Container(
                                       padding: EdgeInsets.all(13),
                                       child: Text(
-                                        "REGISTRAR EJERCICIOdd",
+                                        "REGISTRAR EJERCICIO",
                                         style: TextStyle(
                                           fontSize: 15.5,
                                           color: waterGreen,

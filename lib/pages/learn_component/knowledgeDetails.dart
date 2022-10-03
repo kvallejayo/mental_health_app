@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mental_health_app/Components/background_image.dart';
 import 'package:mental_health_app/Components/my_labels.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../Components/bottom_navigation_bar.dart';
 import '../../themes/my_colors.dart';
@@ -49,6 +51,23 @@ class _KnowledgeDetailsState extends State<KnowledgeDetails> {
                         widget.knowledgeInfo["image"] == "" ? SizedBox() : Image.asset(
                           widget.knowledgeInfo["image"],
                           width: 180,
+                        ),
+                        widget.knowledgeInfo["video"] == "" ? SizedBox() : ElevatedButton(
+                          child: Text("Ver video"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: waterGreen,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                          onPressed: () async {
+                            final url = Uri.parse(widget.knowledgeInfo["video"]);
+                            if (!await launchUrl(url)) {
+                            Fluttertoast.showToast(
+                            msg: 'Error de conexion con $url',
+                            );
+                            }
+                          },
                         ),
                       ],
                     ),
