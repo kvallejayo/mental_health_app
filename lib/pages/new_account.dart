@@ -29,8 +29,10 @@ class _NewAccountPageState extends State<NewAccountPage> {
   final TextEditingController controllerProvince = TextEditingController();
   final TextEditingController controllerDistrict = TextEditingController();
   bool isLoading = false;
+  bool? agreesToDataCollection = false;
   @override
   Widget build(BuildContext context) {
+
     return isLoading ? LoadingPage() : Scaffold(
       body: SafeArea(
         child: Stack(
@@ -117,13 +119,40 @@ class _NewAccountPageState extends State<NewAccountPage> {
                         labelText: "Correo Electrónico de supervisor",
                       ),
                     ),
+
+                    SizedBox(height: 15,),
+
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      child: Column(
+                        children: [
+                          Text('La información recolectada en esta aplicación solo será usada con fines académicos de acuerdo con el reglamento de la ley Nro 29733 "Ley de protección de datos personales"'),
+
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: agreesToDataCollection,
+                                activeColor: intensePurple,
+                                onChanged: (value){
+                                  setState(() {
+                                    agreesToDataCollection = value;
+                                  });
+                                },
+                              ),
+                              Text("Marca la casilla si estas de acuerdo."),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
                     Container(
                       width: 450,
                       height: 70,
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: waterGreen,
+                          backgroundColor: waterGreen,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
                           ),
@@ -169,11 +198,6 @@ class _NewAccountPageState extends State<NewAccountPage> {
                               MaterialPageRoute(builder: (context) => Welcome(userId: id.toString()),),
                             ).then((value) => setState(() {}));
 
-                          } else {
-                            Fluttertoast.showToast(
-                                msg: "Ocurrió un problema, revise el formulario",
-                                toastLength: Toast.LENGTH_LONG
-                            );
                           }
                         },
                       ),
@@ -226,9 +250,24 @@ class _NewAccountPageState extends State<NewAccountPage> {
     if(controllerUsername.text == ""
         || controllerEmail.text == ""
         || controllerPassword.text == ""){
+      Fluttertoast.showToast(
+          msg: "Ocurrió un problema, revise el formulario",
+          toastLength: Toast.LENGTH_LONG
+      );
       return false;
     }
     if (controllerPassword.text != controllerRepeatPassword.text){
+      Fluttertoast.showToast(
+          msg: "Las contraseñas no coinciden",
+          toastLength: Toast.LENGTH_LONG
+      );
+      return false;
+    }
+    if(agreesToDataCollection == false){
+      Fluttertoast.showToast(
+          msg: "Necesita aceptar el acuerdo sobre la recolección de datos.",
+          toastLength: Toast.LENGTH_LONG
+      );
       return false;
     }
     return true;

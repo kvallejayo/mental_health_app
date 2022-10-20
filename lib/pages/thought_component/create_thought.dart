@@ -188,6 +188,7 @@ class _CreateThoughtState extends State<CreateThought> {
   Widget MoodPicker() {
     double iconSize = 45;
     List<dynamic> moods = ["Happy", "Scare", "Sad", "Angry", "Disgust"];
+    List<dynamic> estadosAnimo = ["Alegria", "Miedo", "Tristeza", "Enojo", "Asco"];
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -221,7 +222,7 @@ class _CreateThoughtState extends State<CreateThought> {
                 ),
               ),
               Text(
-                moods[i],
+                estadosAnimo[i],
                 style: TextStyle(
                   color: Color.fromRGBO(115, 112, 108, 10),
                   fontWeight: FontWeight.w500,

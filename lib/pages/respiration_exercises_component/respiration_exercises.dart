@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:mental_health_app/components/background_image.dart';
@@ -29,6 +29,7 @@ class _RespirationExercisesState extends State<RespirationExercises> {
         "Realizar un sonido profundo de la respiración con el fin de escucharlo mientras realizas el ejercicio.",
       ],
       "video": "https://www.youtube.com/watch?v=a4LxzATy-4Y",
+      "videoButtonImg": "assets/videoBotones/478.png",
     },
     {
       "title": "Respiración  abdominaL",
@@ -42,6 +43,7 @@ class _RespirationExercisesState extends State<RespirationExercises> {
         "Sentarse derecho y colocar las manos sobre el vientre.",
       ],
       "video": "https://www.youtube.com/watch?v=COvvQMueCqY",
+      "videoButtonImg": "assets/videoBotones/respiracion_abdominal.png",
     },
     {
       "title": "Respiración  cuadrada",
@@ -55,6 +57,7 @@ class _RespirationExercisesState extends State<RespirationExercises> {
         "Dirigir mensajes positivos hacia ti durante el procedimiento."
       ],
       "video": "https://www.youtube.com/watch?v=v0oXAnyTyWo",
+      "videoButtonImg": "assets/videoBotones/respiracion_cuadrada.png",
     },
     {
       "title": "Relajación muscular progresiva ",
@@ -68,6 +71,7 @@ class _RespirationExercisesState extends State<RespirationExercises> {
         "Imagina una escena agradable y tranquila.",
       ],
       "video": "https://www.youtube.com/watch?v=f9CnqxwMG40",
+      "videoButtonImg": "assets/videoBotones/respiracion_muscular_progresiva.png",
     },
     {
       "title": "Respiración  nasal alterna",
@@ -81,6 +85,7 @@ class _RespirationExercisesState extends State<RespirationExercises> {
         "Dirigir mensajes positivos hacia ti durante el procedimiento.",
       ],
       "video": "https://www.youtube.com/watch?v=9nHT14vrcH4",
+      "videoButtonImg": "assets/videoBotones/respiracion_nasal_alterna.png",
     },
     {
       "title": "Respiración Energizante",
@@ -94,6 +99,7 @@ class _RespirationExercisesState extends State<RespirationExercises> {
         "Realizar un sonido profundo de la respiración con el fin de escucharlo mientras realizas el ejercicio.",
       ],
       "video": "https://www.youtube.com/watch?v=wJnCZI49Xp0",
+      "videoButtonImg": "assets/videoBotones/respiracion_energizante.png",
     },
   ];
 

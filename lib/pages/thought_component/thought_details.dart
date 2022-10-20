@@ -104,6 +104,27 @@ class ThoughtDetails extends StatelessWidget {
     double iconSize = 45;
 
     List<dynamic> moods = thought.moodsFelt;
+    List<dynamic> estadosAnimo = [];
+
+    for(var mood in moods){
+      switch(mood){
+        case "Happy":
+          estadosAnimo.add("Alegria");
+          break;
+        case "Scare":
+          estadosAnimo.add("Miedo");
+          break;
+        case "Sad":
+          estadosAnimo.add("Tristeza");
+          break;
+        case "Angry":
+          estadosAnimo.add("Enojo");
+          break;
+        case "Disgust":
+          estadosAnimo.add("Asco");
+          break;
+      }
+    }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -118,7 +139,7 @@ class ThoughtDetails extends StatelessWidget {
                 },
               ),
               Text(
-                moods[i],
+                estadosAnimo[i],
                 style: TextStyle(
                   color: Color.fromRGBO(115, 112, 108, 10),
                   fontWeight: FontWeight.w500,

@@ -196,6 +196,7 @@ class _ModifyThoughtState extends State<ModifyThought> {
     double iconSize = 45;
     List<PaletteColor> colors = [];
     List<dynamic> moods = ["Happy", "Scare", "Sad", "Angry", "Disgust"];
+    List<dynamic> estadosAnimo = ["Alegria", "Miedo", "Tristeza", "Enojo", "Asco"];
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -229,7 +230,7 @@ class _ModifyThoughtState extends State<ModifyThought> {
                 ),
               ),
               Text(
-                moods[i],
+                estadosAnimo[i],
                 style: TextStyle(
                   color: Color.fromRGBO(115, 112, 108, 10),
                   fontWeight: FontWeight.w500,

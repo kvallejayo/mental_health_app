@@ -56,6 +56,7 @@ class _LearnPageState extends State<LearnPage> {
       "moreInfo": "El CBT puede ser una herramienta muy útil, ya sea sola o en combinación con otras terapias, para tratar los trastornos de salud mental, como la depresión, el trastorno de estrés postraumático (TEPT) o un trastorno de la alimentación. Sin embargo, no todas las personas que se benefician de la terapia cognitiva conductual tienen una enfermedad mental. El CBT puede ser una herramienta eficaz para ayudar a cualquier persona a aprender cómo manejar mejor las situaciones estresantes de la vida.",
       "video": "",
       "image": "",
+      "videoButtonImg": "",
     },
     {
       "title": "¿Por qué es importante el test GAD-7?",
@@ -64,6 +65,7 @@ class _LearnPageState extends State<LearnPage> {
       "moreInfo": "Los datos normativos permiten a los usuarios del GAD-7 discernir si la puntuación de ansiedad de una persona es normal o leve, moderada o gravemente elevada. Sin embargo, no se puede usar como reemplazo de la evaluación clínica y se debe usar una evaluación adicional para confirmar un diagnóstico de TAG.",
       "video": "",
       "image": "assets/learn/gad dibujo.png",
+      "videoButtonImg": "",
     },
     {
       "title": "¿Qué mide el test PHQ-9?",
@@ -72,6 +74,7 @@ class _LearnPageState extends State<LearnPage> {
       "moreInfo": "Los datos normativos permiten a los usuarios del GAD-7 discernir si la puntuación de ansiedad de una persona es normal o leve, moderada o gravemente elevada. Sin embargo, no se puede usar como reemplazo de la evaluación clínica y se debe usar una evaluación adicional para confirmar un diagnóstico de TAG.",
       "video": "",
       "image": "",
+      "videoButtonImg": "",
     },
   ];
 
@@ -83,6 +86,7 @@ class _LearnPageState extends State<LearnPage> {
       "moreInfo": "",
       "video": "https://www.youtube.com/watch?v=irp5ghCVNAM",
       "image": "",
+      "videoButtonImg": "assets/videoBotones/como_superar_la_procrastinacion.png",
     },
     {
       "title": "¿Qué es el registro de pensamientos (Reestructuración cognitiva)?",
@@ -90,6 +94,7 @@ class _LearnPageState extends State<LearnPage> {
       "concept": "La Reestructuración Cognitiva (RC) es una técnica básica de la terapia cognitivo-conductual. La técnica consiste en la discusión de los pensamientos automáticos negativos que se producen en situaciones que provocan ansiedad o cualquier otro tipo de perturbación emocional (por ejemplo, “Creen que soy aburrido”) y su sustitución por creencias o pensamientos más racionales (como “No puedo leer la mente de otras personas, probablemente están cansados ahora”). A medida que los pensamientos son enfrentados y puestos en duda, su capacidad para provocar estrés o ansiedad se debilita.",
       "moreInfo": "",
       "video": "https://www.youtube.com/watch?v=2LRlXXg52b0",
+      "videoButtonImg": "assets/videoBotones/que_es_el_registro_de_pensamientos.png",
       "image": "",
     },
     {
@@ -99,6 +104,7 @@ class _LearnPageState extends State<LearnPage> {
       "moreInfo": "A menudo nos encontramos con una serie de excusas o racionalizaciones para justificar nuestro comportamiento. Según los investigadores, hay 15 razones clave por las que las personas dicen que posponen las cosas: 1.	Sin saber lo que hay que hacer. 2.	No saber cómo hacer algo. 3.	no querer hacer algo. 4.	Sin importar si se hace o no. 5.	No me importa cuando algo se hace. 6.	No tener ganas de hacerlo. 7.	Tener la costumbre de esperar hasta el último momento. 8.	Creer que se trabaja mejor bajo presión. 9.	Pensando que puedes terminarlo en el último minuto. 10.	Falta de iniciativa para empezar. 11.	Olvidando. 12.	Culpar a la enfermedad o a la mala salud. 13.	Esperando el momento adecuado. 14.	Necesidad de tiempo para pensar en la tarea. 15.	Retrasar una tarea a favor de trabajar en otra",
       "video": "",
       "image": "",
+      "videoButtonImg": "",
     },
     {
       "title": "¿Qué es la inteligencia emocional?",
@@ -107,6 +113,7 @@ class _LearnPageState extends State<LearnPage> {
       "moreInfo": "",
       "video": "https://www.youtube.com/watch?v=vkhmTQ1PFbo",
       "image": "",
+      "videoButtonImg": "assets/videoBotones/que_es_inteligencia_artificial.png",
     },
     {
       "title": "¿Qué es trastorno de hiperactividad con déficit de atención?",
@@ -115,6 +122,7 @@ class _LearnPageState extends State<LearnPage> {
       "moreInfo": "No hay claridad sobre la causa del THDA. Puede estar vinculado a los genes y a factores en el hogar o sociales. Los expertos han encontrado que los niños con THDA son diferentes que aquellos niños sin este trastorno. La química cerebral también es diferente.",
       "video": "https://www.youtube.com/watch?v=mkdbzEg0VYE",
       "image": "",
+      "videoButtonImg": "assets/videoBotones/que_es_transtorno_de_hiperactividad.png",
     },
     {
       "title": "¿Qué es Trastorno obsesivo compulsivo (TOC)?",
@@ -122,6 +130,7 @@ class _LearnPageState extends State<LearnPage> {
       "concept": "El trastorno obsesivo compulsivo (TOC) se caracteriza por un patrón de pensamientos y miedos no deseados (obsesiones) que provocan comportamientos repetitivos (compulsiones). Estas obsesiones y compulsiones interfieren en las actividades diarias y causan un gran sufrimiento emocional.",
       "moreInfo": "",
       "video": "https://www.youtube.com/watch?v=s180DqE-wQU",
+      "videoButtonImg": "assets/videoBotones/que_es_toc.png",
       "image": "",
     },
   ];

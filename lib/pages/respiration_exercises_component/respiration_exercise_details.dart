@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mental_health_app/components/background_image.dart';
 import 'package:mental_health_app/components/my_labels.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../components/bottom_navigation_bar.dart';
@@ -130,19 +132,20 @@ class _RespirationExerciseDetailsState extends State<RespirationExerciseDetails>
                           ),
                         ),
 
-                        /*
-
-                        Container(
-                          width: 400,
-                          child: YoutubePlayerControllerProvider(
-                            controller: ytController,
-                            child: YoutubePlayer(
-                              controller: ytController,
-                            ),
+                        SizedBox(height: 10,),
+                        widget.respirationExercise["videoButtonImg"] == "" ? SizedBox() : GestureDetector(
+                          child: Image.asset(
+                            widget.respirationExercise["videoButtonImg"],
                           ),
+                          onTap: () async {
+                            final url = Uri.parse(widget.respirationExercise["video"]);
+                            if (!await launchUrl(url)) {
+                              Fluttertoast.showToast(
+                                msg: 'Error de conexion con $url',
+                              );
+                            }
+                          },
                         ),
-
-                         */
                       ],
                     ),
                   ),
@@ -150,7 +153,7 @@ class _RespirationExerciseDetailsState extends State<RespirationExerciseDetails>
               ),
             ),
           ],
-        )
+        ),
       ),
       bottomNavigationBar: BottomNavigation(idSend: widget.userId),
     );

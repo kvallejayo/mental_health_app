@@ -1,4 +1,4 @@
-#Thu Sep 29 16:17:58 COT 2022
+#Tue Oct 04 23:06:08 COT 2022
 base.0=D\:\\Projects\\GitHubRepositories\\mental_health_app\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

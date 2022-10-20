@@ -52,20 +52,29 @@ class _KnowledgeDetailsState extends State<KnowledgeDetails> {
                           widget.knowledgeInfo["image"],
                           width: 180,
                         ),
-                        widget.knowledgeInfo["video"] == "" ? SizedBox() : ElevatedButton(
-                          child: Text("Ver video"),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: waterGreen,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
+
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Video:",
+                            style: TextStyle(
+                              color: Color(0xFF9296BB),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          onPressed: () async {
+                        ),
+                        SizedBox(height: 10,),
+                        widget.knowledgeInfo["videoButtonImg"] == "" ? SizedBox() : GestureDetector(
+                          child: Image.asset(
+                            widget.knowledgeInfo["videoButtonImg"],
+                          ),
+                          onTap: () async {
                             final url = Uri.parse(widget.knowledgeInfo["video"]);
                             if (!await launchUrl(url)) {
-                            Fluttertoast.showToast(
-                            msg: 'Error de conexion con $url',
-                            );
+                              Fluttertoast.showToast(
+                                msg: 'Error de conexion con $url',
+                              );
                             }
                           },
                         ),
