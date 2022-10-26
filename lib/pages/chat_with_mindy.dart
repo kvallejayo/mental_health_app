@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:mental_health_app/pages/profile_component/medals.dart';
+import 'package:mental_health_app/pages/profile_component/score_and_levels.dart';
 import '../components/background_image.dart';
 import '../components/bottom_navigation_bar.dart';
 import '../themes/my_colors.dart';
@@ -71,9 +73,9 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
                   ),
                   onPressed: (){
                     messages.add(
-                        Message(
-                          content: Text("Elijo la opción: ${option["title"][0]}"),
-                        )
+                      Message(
+                        content: Text("Elijo la opción: ${option["title"][0]}"),
+                      ),
                     );
                     messages.add(
                       Message(
@@ -100,11 +102,102 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
         senderName: "Mindy",
         senderAvatar: "assets/bot_emocionado.png",
         content: Text(
-          "¡Hola, soy Mindy! Te ayudaré a complementar tus dudas sobre conceptos de la salud mental.",
+          "¡Hola, soy Mindy! Soy tu asistente personal que te acompañará en esta travesía.",
+        ),
+      ),
+      Message(
+        senderName: "Mindy",
+        senderAvatar: "assets/bot_emocionado.png",
+        content: Text(
+          "¿Qué te gustaría ver o hacer ahora?",
+        ),
+      ),
+      Message(
+        senderName: "Mindy",
+        senderAvatar: "assets/bot_emocionado.png",
+        content: IntrinsicWidth(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/graficas/sueño.png", height: 100,),
+                        SizedBox(height: 5,),
+                        Text(
+                          "NIVELES Y PUNTAJE",
+                          style: TextStyle(
+                            color: Color(0xFF73706C),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ScoreAndLevels(userId: widget.userId),
+                        ),
+                      );
+                    },
+                  ),
+                  GestureDetector(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/graficas/emociones.png", height: 100,),
+                        SizedBox(height: 5,),
+                        Text(
+                          "COLECCION DE MEDALLES",
+                          style: TextStyle(
+                            color: Color(0xFF73706C),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Medals(userId: widget.userId),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(height: 15,),
+              GestureDetector(
+                child: Column(
+                  children: [
+                    Image.asset("assets/graficas/ejercicio.png", width: 220,),
+                    SizedBox(height: 5,),
+                    Text(
+                      "COLECCION DE MEDALLES",
+                      style: TextStyle(
+                        color: Color(0xFF73706C),
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                onTap: (){
+                  newQuestion();
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
         ),
       ),
     ];
-    newQuestion();
     super.initState();
   }
 

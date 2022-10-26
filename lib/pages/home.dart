@@ -325,8 +325,6 @@ class _HomePageState extends State<HomePage> {
                       );
                     }
                     List? affirmationsList = snapshot.data;
-                    print("DATA");
-                    print(affirmationsList);
                     return Column(
                       children: [
 

@@ -519,3 +519,15 @@ build/app/outputs/flutter-apk/app.apk
 build/app/outputs/flutter-apk/app.apk.sha1
 build/app/outputs/mapping/release/seeds.txt
 build/app/outputs/sdk-dependencies/release/sdkDependencies.txt
+build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/AssetManifest.json
+build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/kernel_blob.bin
+build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/AssetManifest.json.jar
+build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/kernel_blob.bin.jar
+build/app/intermediates/flutter/debug/flutter_assets/AssetManifest.json
+build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin
+build/app/intermediates/flutter/debug/flutter_build.d
+build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt
+build/app/outputs/apk/debug/app-debug.apk
+build/app/outputs/flutter-apk/app-debug.apk
+build/app/outputs/flutter-apk/app.apk
+build/app/outputs/flutter-apk/app.apk.sha1

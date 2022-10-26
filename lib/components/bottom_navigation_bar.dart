@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../pages/graph_component/graphs.dart';
 import '../pages/home.dart';
 import '../pages/learn_component/learn.dart';
-import '../pages/profile.dart';
+import '../pages/profile_component/profile.dart';
 import '../pages/chat_with_mindy.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -153,7 +153,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               widget.isTheSameProfile ? null : Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfilePage(userId: widget.idSend,),
+                  builder: (context) => Profile(userId: widget.idSend,),
                 ),
               ).then((value) => setState(() {}));
             },
