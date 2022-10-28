@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mental_health_app/Components/background_image.dart';
 import 'package:mental_health_app/Components/bottom_navigation_bar.dart';
 import 'package:mental_health_app/Components/my_labels.dart';
@@ -12,7 +13,9 @@ import 'package:mental_health_app/pages/profile_component/profile_information.da
 import 'package:mental_health_app/pages/profile_component/score_and_levels.dart';
 import 'package:mental_health_app/pages/sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:time_elapsed/time_elapsed.dart';
 
+import '../../models/Medal.dart';
 import '../../security/user_secure_storage.dart';
 import '../../themes/my_colors.dart';
 import '../../utils/endpoints.dart';
@@ -28,34 +31,154 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   DataBaseHelper dataBaseHelper = DataBaseHelper();
 
-  Future<void> createProfile() async {
-    final username = await UserSecureStorage.getUsername() ?? '';
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    String? userDataStr = pref.getString(widget.userId);
-    Map<String, dynamic> userData = userDataStr == null ? {} : jsonDecode(userDataStr);
-    userData["profileData"] = {
-      "username": username,
-      "profile_img": "assets/niveles/piezaperfil.png",
-      "ranked_img": "assets/niveles/principiante motivado.png",
-      "medals": [],
-      "mindy_days_counter": 1,
-      "score": 0,
-    };
-    await pref.setString(widget.userId, jsonEncode(userData));
-  }
-
   Future<Map<String, dynamic>> getProfile() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     String? userDataStr = pref.getString(widget.userId);
     Map<String, dynamic> userData = userDataStr == null ? {} : jsonDecode(userDataStr);
 
     if(userData["profileData"] == null){
-      createProfile();
-      return {};
+      //Creating new profile data
+      final username = await UserSecureStorage.getUsername() ?? '';
+      userData["profileData"] = {
+        "username": username,
+        "profile_img": "assets/niveles/piezaperfil.png",
+        "ranked_img": "assets/niveles/principiante motivado.png",
+        "medals": [],
+        "mindy_days_counter": 0,
+        "score": 0,
+        "creation_date": DateFormat('yyyy-MM-dd HH:mm').format(DateTime.now()),
+      };
+      await pref.setString(widget.userId, jsonEncode(userData));
+      return userData["profileData"];
     }
+    //Updating mindy days counter
+    var creationDate = DateTime.parse(userData["profileData"]["creation_date"]);
+    var daysSinceCreationDate = (DateTime.now().difference(creationDate).inHours / 24).round();
+    userData["profileData"]["mindy_days_counter"] = daysSinceCreationDate;
+
+    //Updating medals
+    userData["profileData"]["medals"] = await getUserMedalsList(userData["profileData"]);
+
+    //Updating Score
+    int score = 0;
+    for(var medal in userData["profileData"]["medals"]){
+      score = score + int.parse(medal["points_worth"]);
+    }
+    userData["profileData"]["score"] = score;
+
+    await pref.setString(widget.userId, jsonEncode(userData));
     return userData["profileData"];
   }
 
+  Future<List> getUserMedalsList(Map<String, dynamic> profileData) async {
+
+    List<Medal> medals = [
+      Medal(
+        message: "1 día usando la aplicación",
+        image: "assets/medals/days_in_mindy_1.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 1){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+      Medal(
+        message: "3 días usando la aplicación",
+        image: "assets/medals/days_in_mindy_3.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 3){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+      Medal(
+        message: "7 días usando la aplicación",
+        image: "assets/medals/days_in_mindy_7.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 7){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+      Medal(
+        message: "15 días usando la aplicación",
+        image: "assets/medals/days_in_mindy_15.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 15){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+      Medal(
+        message: "1 mes usando la aplicación",
+        image: "assets/medals/days_in_mindy_1_month.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 30){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+      Medal(
+        message: "3 meses usando la aplicación",
+        image: "assets/medals/days_in_mindy_3_months.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 62){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+      Medal(
+        message: "6 meses usando la aplicación",
+        image: "assets/medals/days_in_mindy_6_months.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 124){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+      Medal(
+        message: "1 año usando la aplicación",
+        image: "assets/medals/days_in_mindy_1_year.png",
+        earnCondition: (){
+          if(profileData["mindy_days_counter"] >= 365){
+            return true;
+          }
+          return false;
+        },
+        pointsWorth: 10,
+      ),
+    ];
+
+    List<dynamic> userMedals = [];
+    //VALIDATING MEDALS
+    for(var medal in medals){
+      if(medal.earnCondition()){
+        Map<String, dynamic> medalData = {
+          "message": medal.message,
+          "image": medal.image,
+          "points_worth": medal.pointsWorth.toString(),
+        };
+        if(!userMedals.contains(medalData)){
+          userMedals.add(medalData);
+        }
+      }
+    }
+    return userMedals;
+  }
 
   late Map<String, dynamic> profileData;
 

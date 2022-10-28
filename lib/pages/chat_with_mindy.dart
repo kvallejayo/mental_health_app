@@ -125,7 +125,7 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
                   GestureDetector(
                     child: Column(
                       children: [
-                        Image.asset("assets/graficas/sueño.png", height: 100,),
+                        Image.asset("assets/chatmindy/niveles y puntajes.png", height: 100,),
                         SizedBox(height: 5,),
                         Text(
                           "NIVELES Y PUNTAJE",
@@ -149,10 +149,10 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
                   GestureDetector(
                     child: Column(
                       children: [
-                        Image.asset("assets/graficas/emociones.png", height: 100,),
+                        Image.asset("assets/chatmindy/medallas.png", height: 100,),
                         SizedBox(height: 5,),
                         Text(
-                          "COLECCION DE MEDALLES",
+                          "COLECCION DE MEDALLAS",
                           style: TextStyle(
                             color: Color(0xFF73706C),
                             fontSize: 10,
@@ -176,10 +176,10 @@ class _ChatWithMindyState extends State<ChatWithMindy> {
               GestureDetector(
                 child: Column(
                   children: [
-                    Image.asset("assets/graficas/ejercicio.png", width: 220,),
+                    Image.asset("assets/chatmindy/chatbotmindy.png", width: 220,),
                     SizedBox(height: 5,),
                     Text(
-                      "COLECCION DE MEDALLES",
+                      "CONSULTAR INFORMACION DE SALUD MENTAL",
                       style: TextStyle(
                         color: Color(0xFF73706C),
                         fontSize: 10,

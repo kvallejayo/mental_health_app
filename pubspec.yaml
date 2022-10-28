@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  time_elapsed: ^0.2.6
   flutter_launcher_icons: ^0.10.0
   palette_generator: ^0.3.3+2
   timezone: ^0.8.0

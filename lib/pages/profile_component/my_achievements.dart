@@ -1,18 +1,25 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Components/background_image.dart';
 import '../../Components/bottom_navigation_bar.dart';
 import '../../Components/my_labels.dart';
+import '../../models/Medal.dart';
+import '../../security/user_secure_storage.dart';
 
 class MyAchievements extends StatelessWidget {
   final String userId;
   final Map<String, dynamic> profileData;
-  const MyAchievements({Key? key, required this.userId, required this.profileData}) : super(key: key);
+  MyAchievements({Key? key, required this.userId, required this.profileData}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -57,25 +64,25 @@ class MyAchievements extends StatelessWidget {
                           ],
                         ),
                         H1Label("Medallas Obtenidas"),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 15,),
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
-                            ),
-                            itemCount: profileData["medals"].length,
-                            itemBuilder: (context, index){
-                              return GestureDetector(
-                                child: Center(
+                        GridView.builder(
+                          shrinkWrap: true,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                          ),
+                          itemCount: profileData["medals"].length,
+                          itemBuilder: (context, index){
+                            return GestureDetector(
+                              child: Center(
+                                child: Container(
+                                  padding: EdgeInsets.all(8),
                                   child: Image.asset(profileData["medals"][index]["image"]),
                                 ),
-                                onTap: (){
+                              ),
+                              onTap: (){
 
-                                },
-                              );
-                            },
-                          ),
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),

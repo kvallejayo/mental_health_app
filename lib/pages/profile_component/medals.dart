@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mental_health_app/Components/background_image.dart';
 import 'package:mental_health_app/Components/my_labels.dart';
+import 'package:mental_health_app/models/Medal.dart';
 
 import '../../Components/bottom_navigation_bar.dart';
 
@@ -10,47 +11,62 @@ class Medals extends StatelessWidget {
   final String userId;
   Medals({Key? key, required this.userId}) : super(key: key);
 
-  List<dynamic> medals = [
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
-    {
-      "title": "test",
-      "image": "assets/medals/medal_temp.png",
-    },
+  List<Medal> medals = [
+    Medal(
+      message: "1 día usando la aplicación",
+      image: "assets/medals/days_in_mindy_1.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
+    Medal(
+      message: "3 días usando la aplicación",
+      image: "assets/medals/days_in_mindy_3.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
+    Medal(
+      message: "7 días usando la aplicación",
+      image: "assets/medals/days_in_mindy_7.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
+    Medal(
+      message: "15 días usando la aplicación",
+      image: "assets/medals/days_in_mindy_15.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
+    Medal(
+      message: "1 mes usando la aplicación",
+      image: "assets/medals/days_in_mindy_1_month.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
+    Medal(
+      message: "3 meses usando la aplicación",
+      image: "assets/medals/days_in_mindy_3_months.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
+    Medal(
+      message: "6 meses usando la aplicación",
+      image: "assets/medals/days_in_mindy_6_months.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
+    Medal(
+      message: "1 año usando la aplicación",
+      image: "assets/medals/days_in_mindy_1_year.png",
+      earnCondition: (){ return true;},
+      pointsWorth: 10,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
+    if(medals[0].earnCondition()){
+      print("OMFG");
+    }
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -71,7 +87,10 @@ class Medals extends StatelessWidget {
                       itemBuilder: (context, index){
                         return GestureDetector(
                           child: Center(
-                            child: Image.asset(medals[index]["image"]),
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              child: Image.asset(medals[index].image),
+                            ),
                           ),
                           onTap: (){
 

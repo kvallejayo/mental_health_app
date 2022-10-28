@@ -117,6 +117,7 @@ class DataBaseHelper {
         'Authorization': 'Bearer $token',
       },
     );
+
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(utf8.decode(result.bodyBytes));
       return User.fromJson(jsonResponse);
